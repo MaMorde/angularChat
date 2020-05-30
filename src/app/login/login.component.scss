@@ -1,0 +1,30 @@
+.mat-card {
+  width: 500px;
+  height: 350px;
+  background-color: whitesmoke;
+}
+mat-card-header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: black;
+  mat-card-title {
+    font-size: 25px;
+  }
+}
+mat-card-actions {
+  button {
+    font-size: 17px;
+    color: white;
+    background: #1e89d0;
+    width: 250px;
+  }
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+}
+mat-card-content {
+  display: grid;
+}
