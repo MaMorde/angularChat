@@ -10,70 +10,84 @@
 
   <mat-card-content #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <div
-      #back
-      class="message_block"
+      class="wrapper"
       *ngFor="let message of messages"
-      [style.background]="
-        message.user == getLoggedName()
-          ? 'rgb(18%, 60%, 88%, 0.9)'
-          : 'rgb(150, 15, 150)'
+      [style.justify-content]="
+        message.user == getLoggedName() ? 'flex-end' : 'block'
       "
     >
-      <div class="username-date">
-        <div class="block_username">
-          {{ message.user }}
+      <div
+        #back
+        class="message_block"
+        [style.background]="
+          message.user == getLoggedName()
+            ? 'rgb(18%, 60%, 88%, 0.9)'
+            : 'rgb(150, 15, 150)'
+        "
+      >
+        <div class="username-date">
+          <div class="block_username">
+            {{ message.user }}
+          </div>
+          <div class="block_date">
+            {{ message.date | date: "HH:mm" }}
+          </div>
         </div>
-        <div class="block_date">
-          {{ message.date | date: "HH:mm" }}
-        </div>
-      </div>
 
-      <div class="block_message" *ngIf="!message.editing; else editingMessage">
-        {{ message.text }}
-      </div>
-      <ng-template #editingMessage>
-        <div>
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              [(ngModel)]="message.text"
-              (keyup.enter)="doneEditMessage(message)"
-              (keyup.escape)="cancelEditMessage(message)"
-              autofocus
-              maxlength="256"
-            />
-          </mat-form-field>
+        <div
+          class="block_message"
+          *ngIf="!message.editing; else editingMessage"
+        >
+          {{ message.text }}
         </div>
-      </ng-template>
-      <div class="edit_date">
-        <div *ngIf="message.user == getLoggedName()">
-          <button
-            mat-button
-            class="btn_edit"
-            (click)="editMessage(message)"
-            *ngIf="!message.editing; else doneEdit"
-          >
-            <span class="material-icons">
-              edit
-            </span>
-          </button>
-          <ng-template #doneEdit>
+        <ng-template #editingMessage>
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="message.text"
+                (keyup.enter)="doneEditMessage(message)"
+                (keyup.escape)="cancelEditMessage(message)"
+                autofocus
+                maxlength="256"
+              />
+            </mat-form-field>
+          </div>
+        </ng-template>
+        <div class="edit_date">
+          <div *ngIf="message.user == getLoggedName()">
             <button
               mat-button
               class="btn_edit"
-              (click)="doneEditMessage(message)"
+              (click)="editMessage(message)"
+              *ngIf="!message.editing; else doneEdit"
             >
               <span class="material-icons">
-                done
+                edit
               </span>
             </button>
-          </ng-template>
-          <button mat-button class="btn_edit" (click)="deleteMessage(message)">
-            <span class="material-icons">
-              delete
-            </span>
-          </button>
+            <ng-template #doneEdit>
+              <button
+                mat-button
+                class="btn_edit"
+                (click)="doneEditMessage(message)"
+              >
+                <span class="material-icons">
+                  done
+                </span>
+              </button>
+            </ng-template>
+            <button
+              mat-button
+              class="btn_edit"
+              (click)="deleteMessage(message)"
+            >
+              <span class="material-icons">
+                delete
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
