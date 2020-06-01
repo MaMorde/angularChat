@@ -97,6 +97,7 @@ mat-form-field {
   margin-bottom: 30px;
 }
 .message_block {
+  display: flex;
   word-break: break-all;
   width: fit-content;
   border-radius: 11px;
@@ -129,8 +130,9 @@ mat-form-field {
 
   font-weight: bold;
 }
-.block_message {
+.message-text {
   word-break: break-all;
+
   align-self: center;
 }
 .block_date {
@@ -147,6 +149,6 @@ mat-form-field {
   display: flex;
   justify-content: space-between;
 }
-.wrapper {
+.wrapper2 {
   display: flex;
 }
