@@ -12,11 +12,11 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard2 implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
+  public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.initAuth() == false) {
+    if (this.authService.initAuth() === false) {
       return true;
     } else {
       this.router.navigate(['/chat']);
