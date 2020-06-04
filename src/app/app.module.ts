@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -41,6 +41,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
+    ReactiveFormsModule,
     PickerModule,
   ],
   providers: [AuthGuard],
