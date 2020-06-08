@@ -16,27 +16,27 @@ export class ChatComponent implements OnInit {
     private chatServive: ChatService
   ) {}
 
-  messages: Message[];
-  message: string;
-  date: Date;
-  beforeEditMessage: string;
+  public messages: Message[];
+  public message: string;
+  public date: Date;
+  public beforeEditMessage: string;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';
   }
 
-  dateNow(): Date {
+  public dateNow(): Date {
     this.date = new Date();
     return this.date;
   }
-  addMessage(): void {
-    if (this.message.trim() == '') {
+  public addMessage(): void {
+    if (this.message.trim() === '') {
       alert('Введите сообщение');
       return;
     } else {
-      let newMessage: Message = {
+      const newMessage: Message = {
         id: '_' + Math.random().toString(36).substr(2, 9),
         user: this.auth.loggedUsername,
         text: this.message,
@@ -51,25 +51,25 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  getLoggedName() {
+  public getLoggedName() {
     return this.auth.initLogged();
   }
 
-  editMessage(message: Message): void {
+  public editMessage(message: Message): void {
     this.beforeEditMessage = message.text;
     this.chatServive.editMessageLocal(message);
   }
-  doneEditMessage(message: Message): void {
+  public doneEditMessage(message: Message): void {
     if (message.text.trim().length === 0) {
       message.text = this.beforeEditMessage;
     }
     this.chatServive.doneEditLocalMessage(message);
   }
-  cancelEditMessage(message: Message) {
+  public cancelEditMessage(message: Message) {
     message.text = this.beforeEditMessage;
     this.chatServive.cancelEditLocalMessage(message);
   }
-  deleteMessage(message: Message) {
+  public deleteMessage(message: Message) {
     this.chatServive.deleteLocalMessage(message.id);
     this.messages = this.chatServive.initMessages();
   }

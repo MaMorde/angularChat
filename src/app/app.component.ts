@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fader } from './route-animations';
 
@@ -8,13 +8,10 @@ import { fader } from './route-animations';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'app-chat';
+export class AppComponent {
   constructor() {}
 
-  ngOnInit() {}
-
-  prepareRoute(outlet: RouterOutlet) {
+  public prepareRoute(outlet: RouterOutlet) {
     return (
       outlet &&
       outlet.activatedRouteData &&

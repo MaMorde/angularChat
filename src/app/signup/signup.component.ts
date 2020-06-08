@@ -9,49 +9,51 @@ import { User } from '../interfaces/user';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  hide = true;
-  users: User[];
-  username: string;
-  password: string;
+  public hide = true;
+  public users: User[];
+  public username: string;
+  public password: string;
 
   constructor(private router: Router, private Auth: AuthService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.users = this.Auth.initUsers();
     this.username = '';
     this.password = '';
   }
-  signupUser(): void {
+  public signupUser(): void {
     if (
-      (this.username == null || this.username.trim() == '') &&
-      (this.password == null || this.password.trim() == '')
+      (this.username === null || this.username.trim() === '') &&
+      (this.password === null || this.password.trim() === '')
     ) {
       alert('Придумайте логин и пароль');
       return;
     } else if (
-      (this.username == null || this.username.trim() == '') &&
+      (this.username === null || this.username.trim() === '') &&
       this.password
     ) {
       alert('Придумайте логин');
       return;
     } else if (
-      (this.password == null || this.password.trim() == '') &&
+      (this.password === null || this.password.trim() === '') &&
       this.username
     ) {
       alert('Придумайте пароль');
       return;
     }
-    let newUser: User = {
+    const newUser: User = {
       id: 'u' + Math.random().toString(36).substr(2, 9),
       username: this.username,
       password: this.password,
     };
 
-    var chekUserName = false;
+    let chekUserName = false;
     if (localStorage.users) {
+      // tslint:disable-next-line:no-eval
       for (let i = 0; i < eval(localStorage.users).length; i++) {
         if (
-          eval(localStorage.users)[i].username.toLowerCase() !=
+          // tslint:disable-next-line:no-eval
+          eval(localStorage.users)[i].username.toLowerCase() !==
           this.username.trim().toLowerCase()
         ) {
           chekUserName = false;
@@ -63,7 +65,7 @@ export class SignupComponent implements OnInit {
       chekUserName = false;
     }
 
-    if (chekUserName == true) {
+    if (chekUserName === true) {
       alert('Такое имя уже использовано, введите другое!');
       return;
     } else {

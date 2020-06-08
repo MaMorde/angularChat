@@ -9,11 +9,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService) {}
-  ngOnInit(): void {}
-  getLoggedName() {
+  public ngOnInit(): void {}
+  public getLoggedName() {
     return this.auth.loggedUsername;
   }
-  logout(): void {
+  public logout(): void {
     this.auth.logout();
   }
 }
