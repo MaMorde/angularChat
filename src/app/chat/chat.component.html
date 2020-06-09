@@ -40,6 +40,7 @@
               <mat-form-field>
                 <input
                   matInput
+                  [formControl]="messageEditControl"
                   type="text"
                   [(ngModel)]="message.text"
                   (keyup.enter)="doneEditMessage(message)"
@@ -67,6 +68,7 @@
                   mat-button
                   class="btn_edit"
                   (click)="doneEditMessage(message)"
+                  [disabled]="messageEditControl.invalid"
                 >
                   <span class="material-icons">
                     done
@@ -100,10 +102,10 @@
         <mat-label>Сообщение</mat-label>
         <input
           matInput
+          [formControl]="messageControl"
           class="inpMessage"
           autocomplete="off"
           [(ngModel)]="message"
-          [ngModelOptions]="{ standalone: true }"
           maxlength="256"
           placeholder="Введите сообщение..."
         />
@@ -111,7 +113,12 @@
         <mat-hint align="end">{{ message.length }} / 256</mat-hint>
       </mat-form-field>
 
-      <button mat-button class="sendBtn" (click)="addMessage()">
+      <button
+        [disabled]="messageControl.invalid"
+        mat-button
+        class="sendBtn"
+        (click)="addMessage()"
+      >
         Отправить
       </button>
     </form>

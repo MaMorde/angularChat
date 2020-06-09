@@ -1,10 +1,5 @@
 <div class="signup mt-5 text-center">
   <mat-card class="example-card">
-    <div [hidden]="login.valid || login.untouched" class="alert alert-danger">
-      Логин может состоять только из латинских букв и цифр и содержать не менее
-      3-х символов.
-    </div>
-
     <mat-card-header class="mt-1">
       <mat-card-title>Регистрация</mat-card-title>
     </mat-card-header>
@@ -12,25 +7,32 @@
       <mat-form-field hintLabel="Max 10 characters" appearance="fill">
         <mat-label>Придумайте логин</mat-label>
         <input
-          required
-          pattern="^\w{3,}$"
-          #login="ngModel"
+          [formControl]="signupUsernameControl"
           matInput
           #input
           autocomplete="off"
-          minlength="3"
-          maxlength="10"
           [(ngModel)]="username"
         />
         <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
       </mat-form-field>
+      <div
+        *ngIf="signupUsernameControl.touched && signupUsernameControl.invalid"
+        class="validations"
+      >
+        <small *ngIf="signupUsernameControl.errors.required"
+          >Данное поле не может быть пустым</small
+        >
+        <small *ngIf="signupUsernameControl.errors.pattern"
+          >Имя пользователя может состоять только из латинских букв и
+          цифр.</small
+        >
+      </div>
+
       <mat-form-field class="mt-3" appearance="fill">
         <mat-label>Придумайте пароль</mat-label>
         <input
           matInput
-          minlength="5"
-          required
-          #psw="ngModel"
+          [formControl]="signupPasswordControl"
           [type]="hide ? 'password' : 'text'"
           [(ngModel)]="password"
         />
@@ -44,11 +46,24 @@
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
       </mat-form-field>
+      <div
+        *ngIf="signupPasswordControl.touched && signupPasswordControl.invalid"
+        class="validations"
+      >
+        <small *ngIf="signupPasswordControl.errors.required"
+          >Данное поле не может быть пустым</small
+        >
+        <small *ngIf="signupPasswordControl.errors.minlength"
+          >Пароль должен состоять из 5 и более символов.</small
+        >
+      </div>
     </mat-card-content>
     <mat-card-actions class="mb-3">
       <button
         class="mb-3"
-        [disabled]="login.invalid || psw.invalid"
+        [disabled]="
+          signupUsernameControl.invalid || signupPasswordControl.invalid
+        "
         (click)="signupUser()"
         mat-button
       >

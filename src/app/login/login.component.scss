@@ -1,6 +1,6 @@
 .mat-card {
   width: 500px;
-  height: 350px;
+  height: 405px;
   background-color: whitesmoke;
 }
 mat-card-header {
@@ -27,4 +27,7 @@ mat-card-actions {
 }
 mat-card-content {
   display: grid;
+}
+.validations {
+  color: red;
 }

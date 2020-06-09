@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ChatService } from '../services/chat.service';
 import { Message } from '../interfaces/message';
-import { FormGroup } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -10,21 +10,30 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
+  public messages: Message[];
+  public message: string;
+  public date: Date;
+  public beforeEditMessage: string;
+  public messageControl: FormControl;
+  public messageEditControl: FormControl;
   constructor(
     private changeDetector: ChangeDetectorRef,
     private auth: AuthService,
     private chatServive: ChatService
   ) {}
 
-  public messages: Message[];
-  public message: string;
-  public date: Date;
-  public beforeEditMessage: string;
-
   public ngOnInit(): void {
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';
+    this.messageControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[^ ]+'),
+    ]);
+    this.messageEditControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[^ ]+'),
+    ]);
   }
 
   public dateNow(): Date {
@@ -32,23 +41,14 @@ export class ChatComponent implements OnInit {
     return this.date;
   }
   public addMessage(): void {
-    if (this.message.trim() === '') {
-      alert('Введите сообщение');
-      return;
-    } else {
-      const newMessage: Message = {
-        id: '_' + Math.random().toString(36).substr(2, 9),
-        user: this.auth.loggedUsername,
-        text: this.message,
-        editing: false,
-        date: this.dateNow(),
-      };
-      this.chatServive.addLocalMessage(newMessage);
-
-      this.message = '';
-
-      this.messages = this.chatServive.initMessages();
-    }
+    const newMessage: Message = {
+      id: '_' + Math.random().toString(36).substr(2, 9),
+      user: this.auth.loggedUsername,
+      text: this.message,
+      editing: false,
+      date: this.dateNow(),
+    };
+    this.chatServive.addLocalMessage(newMessage);
   }
 
   public getLoggedName() {
@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit {
     this.chatServive.editMessageLocal(message);
   }
   public doneEditMessage(message: Message): void {
-    if (message.text.trim().length === 0) {
+    if (this.messageEditControl.invalid) {
       message.text = this.beforeEditMessage;
     }
     this.chatServive.doneEditLocalMessage(message);

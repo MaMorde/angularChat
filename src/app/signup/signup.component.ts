@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/user';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,8 @@ export class SignupComponent implements OnInit {
   public users: User[];
   public username: string;
   public password: string;
+  public signupUsernameControl: FormControl;
+  public signupPasswordControl: FormControl;
 
   constructor(private router: Router, private Auth: AuthService) {}
 
@@ -20,27 +23,18 @@ export class SignupComponent implements OnInit {
     this.users = this.Auth.initUsers();
     this.username = '';
     this.password = '';
+    this.signupUsernameControl = new FormControl('', [
+      Validators.required,
+      Validators.maxLength(10),
+      Validators.minLength(3),
+      Validators.pattern('^[A-Za-z]+[A-Za-z0-9]*$'),
+    ]);
+    this.signupPasswordControl = new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+    ]);
   }
   public signupUser(): void {
-    if (
-      (this.username === null || this.username.trim() === '') &&
-      (this.password === null || this.password.trim() === '')
-    ) {
-      alert('Придумайте логин и пароль');
-      return;
-    } else if (
-      (this.username === null || this.username.trim() === '') &&
-      this.password
-    ) {
-      alert('Придумайте логин');
-      return;
-    } else if (
-      (this.password === null || this.password.trim() === '') &&
-      this.username
-    ) {
-      alert('Придумайте пароль');
-      return;
-    }
     const newUser: User = {
       id: 'u' + Math.random().toString(36).substr(2, 9),
       username: this.username,
