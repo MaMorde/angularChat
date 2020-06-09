@@ -10,13 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ChatComponent } from './chat/chat.component';
-import { MainComponent } from './main/main.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { LoginPageComponent } from './pages/login/login.page';
+import { SignupPageComponent } from './pages/signup/signup.page';
+import { ChatComponent } from './components/chat/chat.component';
+import { MainPageComponent } from './pages/main/main.page';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './guards/auth.guard';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
@@ -25,10 +26,10 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent,
-    SignupComponent,
+    LoginPageComponent,
+    SignupPageComponent,
     ChatComponent,
-    MainComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

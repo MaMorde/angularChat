@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from './main/main.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ChatComponent } from './chat/chat.component';
+import { MainPageComponent } from './pages/main/main.page';
+import { LoginPageComponent } from './pages/login/login.page';
+import { SignupPageComponent } from './pages/signup/signup.page';
+import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthGuard2 } from './guards/auth2.guard';
 
 const routes: Routes = [
   {
     path: 'main',
-    component: MainComponent,
+    component: MainPageComponent,
     canActivate: [AuthGuard2],
     data: { animation: 'isRight' },
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
     data: { animation: 'isRight' },
     canActivate: [AuthGuard2],
   },
   {
     path: 'signup',
-    component: SignupComponent,
+    component: SignupPageComponent,
     data: { animation: 'isRight' },
     canActivate: [AuthGuard2],
   },

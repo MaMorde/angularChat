@@ -1,8 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { ChatService } from '../services/chat.service';
-import { Message } from '../interfaces/message';
+
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { ChatService } from '../../services/chat.service';
+import { Message } from '../../interfaces/message';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -49,6 +51,10 @@ export class ChatComponent implements OnInit {
       date: this.dateNow(),
     };
     this.chatServive.addLocalMessage(newMessage);
+
+    this.message = '';
+
+    this.messages = this.chatServive.initMessages();
   }
 
   public getLoggedName() {

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { User } from '../interfaces/user';
+
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupPageComponent implements OnInit {
   public hide = true;
   public users: User[];
   public username: string;
