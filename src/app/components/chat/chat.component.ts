@@ -4,7 +4,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { Message } from '../../interfaces/message';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -18,11 +17,7 @@ export class ChatComponent implements OnInit {
   public beforeEditMessage: string;
   public messageControl: FormControl;
   public messageEditControl: FormControl;
-  constructor(
-    private changeDetector: ChangeDetectorRef,
-    private auth: AuthService,
-    private chatServive: ChatService
-  ) {}
+  constructor(private auth: AuthService, private chatServive: ChatService) {}
 
   public ngOnInit(): void {
     this.messages = this.chatServive.initMessages();
