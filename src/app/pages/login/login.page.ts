@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit {
           eval(localStorage.users)[i].password === this.password
         ) {
           userFound = true;
-          this.auth.loggedUsername = this.username;
+          this.auth.currentUser.next(this.username);
           this.auth.setAuth();
           this.auth.setLogged(this.username);
           this.username = this.password = '';

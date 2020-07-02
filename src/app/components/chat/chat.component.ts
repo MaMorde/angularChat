@@ -40,7 +40,7 @@ export class ChatComponent implements OnInit {
   public addMessage(): void {
     const newMessage: Message = {
       id: '_' + Math.random().toString(36).substr(2, 9),
-      user: this.auth.loggedUsername,
+      user: this.auth.current(),
       text: this.message,
       editing: false,
       date: this.dateNow(),
