@@ -3,6 +3,7 @@
   height: 405px;
   background-color: whitesmoke;
   position: relative;
+  text-align: center;
 }
 mat-card-header {
   text-align: center;
@@ -11,6 +12,8 @@ mat-card-header {
   color: black;
   mat-card-title {
     font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
 }
 mat-card-actions {
@@ -25,6 +28,7 @@ mat-card-actions {
 .signup {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 mat-card-content {
   display: grid;
@@ -38,4 +42,17 @@ mat-card-content {
 }
 .validations {
   color: red;
+}
+.password {
+  margin-top: 5px;
+}
+
+.buttons {
+  display: block;
+}
+.buttons__signup {
+  margin-top: 10px;
+}
+.buttons__back {
+  margin-top: 10px;
 }

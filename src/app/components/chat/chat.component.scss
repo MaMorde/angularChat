@@ -2,8 +2,9 @@ mat-card-header {
   height: 80px;
   background-color: #f1f1f1;
 }
-mat-card {
+.chat {
   padding: 0;
+  margin-top: 50px;
 }
 .d1 {
   width: 7px;
@@ -39,7 +40,7 @@ mat-card-actions {
   margin: 0 36px;
 }
 mat-card-content {
-  height: 500px;
+  height: 400px;
   overflow: scroll;
   overflow-x: hidden;
   margin-top: 25px;
@@ -52,13 +53,14 @@ mat-card-content {
 }
 form {
   padding: 13px 36px 0 36px;
+  display: flex;
 }
 mat-form-field {
   width: 80%;
 }
 .sendBtn {
   background: #1e89d0;
-  width: 130px;
+  width: 120px;
   height: 50px;
   color: white;
   margin-left: 45px;

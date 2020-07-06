@@ -1,9 +1,9 @@
-<div class="signup mt-5 text-center">
+<div class="signup">
   <mat-card class="example-card">
-    <mat-card-header class="mt-1">
+    <mat-card-header>
       <mat-card-title>Регистрация</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="mt-3">
+    <mat-card-content>
       <mat-form-field hintLabel="Max 10 characters" appearance="fill">
         <mat-label>Придумайте логин</mat-label>
         <input
@@ -28,7 +28,7 @@
         >
       </div>
 
-      <mat-form-field class="mt-3" appearance="fill">
+      <mat-form-field class="password" appearance="fill">
         <mat-label>Придумайте пароль</mat-label>
         <input
           matInput
@@ -58,18 +58,21 @@
         >
       </div>
     </mat-card-content>
-    <mat-card-actions class="mb-3">
-      <button
-        class="mb-3"
-        [disabled]="
+    <mat-card-actions class="buttons">
+      <div class="buttons__signup">
+        <button
+          [disabled]="
           signupUsernameControl.invalid || signupPasswordControl.invalid
         "
-        (click)="signupUser()"
-        mat-button
-      >
-        Зарегистрироваться
-      </button>
-      <button class="mb-5" mat-button routerLink="/main">Назад</button>
+          (click)="signupUser()"
+          mat-button
+        >
+          Зарегистрироваться
+        </button>
+      </div>
+      <div class="buttons__back">
+        <button mat-button routerLink="/main">Назад</button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

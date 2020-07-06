@@ -1,6 +1,7 @@
 .mat-card {
   width: 500px;
   height: 250px;
+  text-align: center;
   background-color: whitesmoke;
 }
 mat-card-header {
@@ -10,11 +11,14 @@ mat-card-header {
   color: black;
   mat-card-title {
     font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
 }
 .main {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 mat-card-actions {
   button {
@@ -23,4 +27,11 @@ mat-card-actions {
     background: #1e89d0;
     width: 250px;
   }
+}
+.buttons__signup {
+  margin-top: 10px;
+}
+
+.buttons {
+  display: block;
 }

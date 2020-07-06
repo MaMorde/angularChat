@@ -6,9 +6,16 @@ mat-toolbar {
   height: 85px;
   padding: 0;
 }
-.kk {
+.wrapper {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+}
+.title__block-wrapper {
+  align-self: center;
+}
+.title__block {
+  display: flex;
 }
 
 .container {
