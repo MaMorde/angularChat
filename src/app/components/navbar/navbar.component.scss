@@ -10,6 +10,10 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
 }
+
+.container {
+  padding: 0 370px;
+}
 img {
   width: 60px;
   height: 60px;
@@ -22,6 +26,7 @@ img {
 .username-logout {
   color: white;
   font-size: 18px;
+  align-self: center;
 }
 button {
   background: white;
