@@ -6,11 +6,9 @@ import { fader } from './route-animations';
   selector: 'app-root',
   animations: [fader],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: [],
 })
 export class AppComponent {
-  constructor() {}
-
   public prepareRoute(outlet: RouterOutlet) {
     return (
       outlet &&
