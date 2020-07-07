@@ -1,16 +1,16 @@
-<mat-toolbar class="container">
+<mat-toolbar class="navbar">
   <div class="wrapper">
-    <span class="title__block">
+    <span class="navbar__title-block">
       <a routerLink="/main"
         ><img
           src="http://icons.iconarchive.com/icons/graphicloads/100-flat-2/96/chat-2-icon.png"
       /></a>
-      <div class="title__block-wrapper">
-        <span class="title">Angular Test Chat</span>
+      <div class="navbar__wrapper">
+        <span class="navbar__title">Angular Test Chat</span>
       </div></span
     >
 
-    <span *ngIf="getLoggedName() ? true : false" class="username-logout">
+    <span *ngIf="getLoggedName()" class="navbar__username-logout">
       <button mat-button (click)="logout()">
         Выйти
       </button></span

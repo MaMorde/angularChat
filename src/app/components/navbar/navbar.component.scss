@@ -11,30 +11,31 @@ mat-toolbar {
   justify-content: space-between;
   width: 100%;
 }
-.title__block-wrapper {
-  align-self: center;
-}
-.title__block {
-  display: flex;
-}
 
-.container {
+.navbar {
   padding: 0 370px;
+  &__title-block {
+    display: flex;
+  }
+  &__username-logout {
+    color: white;
+    font-size: 18px;
+    align-self: center;
+  }
+  &__title {
+    margin-left: 15px;
+    color: white;
+    font-size: 23px;
+  }
+  &__wrapper {
+    align-self: center;
+  }
 }
 img {
   width: 60px;
   height: 60px;
 }
-.title {
-  margin-left: 15px;
-  color: white;
-  font-size: 23px;
-}
-.username-logout {
-  color: white;
-  font-size: 18px;
-  align-self: center;
-}
+
 button {
   background: white;
   color: black;
