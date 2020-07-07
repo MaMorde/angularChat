@@ -5,8 +5,6 @@ import { Message } from '../interfaces/message';
   providedIn: 'root',
 })
 export class ChatService {
-  constructor() {}
-
   public messages: Message[] = [];
 
   public initMessages(): Message[] {

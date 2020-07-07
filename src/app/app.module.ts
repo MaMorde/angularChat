@@ -24,8 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthGuard } from './guards/auth.guard';
 
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +45,6 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
-    PickerModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

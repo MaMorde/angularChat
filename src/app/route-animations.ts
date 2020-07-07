@@ -3,10 +3,7 @@ import {
   transition,
   style,
   query as q,
-  group,
-  animateChild,
   animate,
-  keyframes,
 } from '@angular/animations';
 // this solves them problem
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -7,9 +7,9 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   constructor(private auth: AuthService) {}
-  public ngOnInit(): void {}
+
   public getLoggedName() {
     return this.auth.current();
   }
