@@ -12,18 +12,15 @@ const routes: Routes = [
     path: 'main',
     component: MainPageComponent,
     canActivate: [AuthGuard2],
-    data: { animation: 'isRight' },
   },
   {
     path: 'login',
     component: LoginPageComponent,
-    data: { animation: 'isRight' },
     canActivate: [AuthGuard2],
   },
   {
     path: 'signup',
     component: SignupPageComponent,
-    data: { animation: 'isRight' },
     canActivate: [AuthGuard2],
   },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
@@ -32,7 +29,6 @@ const routes: Routes = [
     redirectTo: '/main',
     canActivate: [AuthGuard2],
     pathMatch: 'full',
-    data: { animation: 'isRight' },
   },
 ];
 
