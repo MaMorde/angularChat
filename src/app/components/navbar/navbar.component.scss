@@ -17,8 +17,11 @@
   }
   &__title {
     margin-left: 15px;
-    color: white;
+
     font-size: 23px;
+    &_white {
+      color: white;
+    }
   }
   &__wrapper {
     display: flex;
