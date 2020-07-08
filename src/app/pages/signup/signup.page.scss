@@ -1,58 +1,48 @@
-.mat-card {
-  width: 500px;
-  height: 405px;
-  background-color: whitesmoke;
-  position: relative;
-  text-align: center;
-}
-mat-card-header {
+.mat-card__header {
   text-align: center;
   display: flex;
   justify-content: center;
   color: black;
-  mat-card-title {
+  .mat-card__header-title {
     font-size: 25px;
     margin-top: 10px;
     margin-bottom: 50px;
   }
 }
-mat-card-actions {
-  button {
-    font-size: 17px;
-    color: white;
-    background: #1e89d0;
-    width: 250px;
-  }
+.mat-card__content {
+  display: grid;
 }
 
 .signup {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-}
-mat-card-content {
-  display: grid;
-}
-.alert {
-  width: 220px;
-  height: 100px;
-  position: absolute;
-  left: 510px;
-  top: 35px;
-}
-.validations {
-  color: red;
-}
-.password {
-  margin-top: 5px;
-}
-
-.buttons {
-  display: block;
-}
-.buttons__signup {
-  margin-top: 10px;
-}
-.buttons__back {
-  margin-top: 10px;
+  &__mat-card {
+    width: 500px;
+    height: 405px;
+    background-color: whitesmoke;
+    position: relative;
+    text-align: center;
+  }
+  &__password {
+    margin-top: 5px;
+  }
+  &__validations {
+    color: red;
+  }
+  &__buttons {
+    display: block;
+    button {
+      font-size: 17px;
+      color: white;
+      background: #1e89d0;
+      width: 250px;
+    }
+    &-registration {
+      margin-top: 10px;
+    }
+    &-back {
+      margin-top: 10px;
+    }
+  }
 }

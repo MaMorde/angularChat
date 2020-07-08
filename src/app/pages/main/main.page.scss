@@ -1,15 +1,9 @@
-.mat-card {
-  width: 500px;
-  height: 250px;
-  text-align: center;
-  background-color: whitesmoke;
-}
-mat-card-header {
+.mat-card__header {
   text-align: center;
   display: flex;
   justify-content: center;
   color: black;
-  mat-card-title {
+  .mat-card__header-title {
     font-size: 25px;
     margin-top: 10px;
     margin-bottom: 50px;
@@ -19,19 +13,22 @@ mat-card-header {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-}
-mat-card-actions {
-  button {
-    font-size: 17px;
-    color: white;
-    background: #1e89d0;
-    width: 250px;
+  &__mat-card {
+    width: 500px;
+    height: 250px;
+    text-align: center;
+    background-color: whitesmoke;
   }
-}
-.buttons__signup {
-  margin-top: 10px;
-}
-
-.buttons {
-  display: block;
+  &__buttons {
+    display: block;
+    button {
+      font-size: 17px;
+      color: white;
+      background: #1e89d0;
+      width: 250px;
+    }
+    &-signup {
+      margin-top: 10px;
+    }
+  }
 }
