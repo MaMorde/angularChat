@@ -1,30 +1,41 @@
-mat-toolbar {
-  background-color: #1e89d0;
-}
 .mat-toolbar-row,
 .mat-toolbar-single-row {
   height: 85px;
   padding: 0;
 }
-.kk {
-  display: flex;
-  justify-content: space-between;
-}
-img {
-  width: 60px;
-  height: 60px;
-}
-.title {
-  margin-left: 15px;
-  color: white;
-  font-size: 23px;
-}
-.username-logout {
-  color: white;
-  font-size: 18px;
-}
-button {
-  background: white;
-  color: black;
-  margin-left: 20px;
+
+.navbar {
+  background-color: #1e89d0;
+  padding: 0 370px;
+  &__title-block {
+    display: flex;
+  }
+  &__logout {
+    background: white;
+    color: black;
+    margin-left: 20px;
+  }
+  &__title {
+    margin-left: 15px;
+
+    font-size: 23px;
+    &_white {
+      color: white;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__title-wrapper {
+    align-self: center;
+  }
+  &__btn-block {
+    align-self: center;
+  }
+  &__logo {
+    width: 60px;
+    height: 60px;
+  }
 }

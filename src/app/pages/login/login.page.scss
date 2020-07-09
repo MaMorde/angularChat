@@ -1,33 +1,48 @@
-.mat-card {
-  width: 500px;
-  height: 405px;
-  background-color: whitesmoke;
-}
-mat-card-header {
-  text-align: center;
+.login {
   display: flex;
   justify-content: center;
-  color: black;
-  mat-card-title {
-    font-size: 25px;
+  margin-top: 50px;
+  &__container {
+    width: 500px;
+    height: 405px;
+    background-color: whitesmoke;
+    text-align: center;
   }
-}
-mat-card-actions {
-  button {
+  &__validations {
+    color: red;
+  }
+  &__password {
+    margin-top: 5px;
+  }
+  &__buttons {
+    display: block;
+
+    &-enter {
+      margin-top: 10px;
+    }
+    &-back {
+      margin-top: 10px;
+    }
+  }
+  &__button {
     font-size: 17px;
     color: white;
     background: #1e89d0;
     width: 250px;
   }
-}
+  &__header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: black;
 
-.login {
-  display: flex;
-  justify-content: center;
-}
-mat-card-content {
-  display: grid;
-}
-.validations {
-  color: red;
+    margin-bottom: 40px;
+  }
+  &__title {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+  &__content {
+    display: grid;
+  }
 }

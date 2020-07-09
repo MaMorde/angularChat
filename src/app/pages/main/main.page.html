@@ -1,12 +1,20 @@
-<div class="main mt-5 text-center">
-  <mat-card class="example-card">
-    <mat-card-header class="mt-3">
-      <mat-card-title>Добро пожаловать</mat-card-title>
+<div class="main">
+  <mat-card class="main__container">
+    <mat-card-header class="main__header">
+      <mat-card-title class="main__title">Добро пожаловать</mat-card-title>
     </mat-card-header>
 
-    <mat-card-actions class="mt-5 mb-3">
-      <button class="mb-2" routerLink="/login" mat-button>Войти</button>
-      <button routerLink="/signup" mat-button>Регистрация</button>
+    <mat-card-actions class="main__buttons">
+      <div class="main__buttons-login">
+        <button class="buttons__login-btn" routerLink="/login" mat-button>
+          Войти
+        </button>
+      </div>
+      <div class="main__buttons-signup">
+        <button class="buttons__signup-btn" routerLink="/signup" mat-button>
+          Регистрация
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

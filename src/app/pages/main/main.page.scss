@@ -1,26 +1,34 @@
-.mat-card {
-  width: 500px;
-  height: 250px;
-  background-color: whitesmoke;
-}
-mat-card-header {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  color: black;
-  mat-card-title {
-    font-size: 25px;
-  }
-}
 .main {
   display: flex;
   justify-content: center;
-}
-mat-card-actions {
-  button {
-    font-size: 17px;
-    color: white;
-    background: #1e89d0;
-    width: 250px;
+  margin-top: 50px;
+  &__container {
+    width: 500px;
+    height: 250px;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+  &__buttons {
+    display: block;
+    button {
+      font-size: 17px;
+      color: white;
+      background: #1e89d0;
+      width: 250px;
+    }
+    &-signup {
+      margin-top: 10px;
+    }
+  }
+  &__header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-bottom: 50px;
+  }
+  &__title {
+    font-size: 25px;
+    margin-top: 10px;
   }
 }

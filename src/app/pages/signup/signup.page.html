@@ -1,9 +1,9 @@
-<div class="signup mt-5 text-center">
-  <mat-card class="example-card">
-    <mat-card-header class="mt-1">
-      <mat-card-title>Регистрация</mat-card-title>
+<div class="signup">
+  <mat-card class="signup__container">
+    <mat-card-header class="signup__header">
+      <mat-card-title class="signup__title">Регистрация</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="mt-3">
+    <mat-card-content class="mat-card__content">
       <mat-form-field hintLabel="Max 10 characters" appearance="fill">
         <mat-label>Придумайте логин</mat-label>
         <input
@@ -17,7 +17,7 @@
       </mat-form-field>
       <div
         *ngIf="signupUsernameControl.touched && signupUsernameControl.invalid"
-        class="validations"
+        class="signup__validations"
       >
         <small *ngIf="signupUsernameControl.errors.required"
           >Данное поле не может быть пустым</small
@@ -28,7 +28,7 @@
         >
       </div>
 
-      <mat-form-field class="mt-3" appearance="fill">
+      <mat-form-field class="signup__password" appearance="fill">
         <mat-label>Придумайте пароль</mat-label>
         <input
           matInput
@@ -48,7 +48,7 @@
       </mat-form-field>
       <div
         *ngIf="signupPasswordControl.touched && signupPasswordControl.invalid"
-        class="validations"
+        class="signup__validations"
       >
         <small *ngIf="signupPasswordControl.errors.required"
           >Данное поле не может быть пустым</small
@@ -58,18 +58,24 @@
         >
       </div>
     </mat-card-content>
-    <mat-card-actions class="mb-3">
-      <button
-        class="mb-3"
-        [disabled]="
+    <mat-card-actions class="signup__buttons">
+      <div class="signup__buttons-registration">
+        <button
+          [disabled]="
           signupUsernameControl.invalid || signupPasswordControl.invalid
         "
-        (click)="signupUser()"
-        mat-button
-      >
-        Зарегистрироваться
-      </button>
-      <button class="mb-5" mat-button routerLink="/main">Назад</button>
+          class="signup__button"
+          (click)="signupUser()"
+          mat-button
+        >
+          Зарегистрироваться
+        </button>
+      </div>
+      <div class="signup__buttons-back">
+        <button class="signup__button" mat-button routerLink="/main">
+          Назад
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

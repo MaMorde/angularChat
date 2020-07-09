@@ -1,10 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div [@routeAnimations]="prepareRoute(outlet)">
-        <router-outlet #outlet="outlet"></router-outlet>
-      </div>
-    </div>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>

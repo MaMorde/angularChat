@@ -1,69 +1,106 @@
-mat-card-header {
-  height: 80px;
-  background-color: #f1f1f1;
+.mat-form-field {
+  width: 80%;
 }
-mat-card {
-  padding: 0;
-}
-.d1 {
-  width: 7px;
-  height: 7px;
-  background: greenyellow;
-  margin-left: 10px;
-  align-self: center;
-  border-radius: 50%;
-}
-mat-card-title {
-  position: relative;
-  margin-top: 30px;
-  margin-left: 20px;
-  display: flex;
-}
-
 .mat-card-header-text {
   margin: 0 !important;
 }
-.online {
-  font-size: 16px;
-  color: gray;
-  margin-left: 17px;
+.chat {
+  padding: 0;
+  margin-top: 50px;
+
+  &__online-indicator {
+    width: 7px;
+    height: 7px;
+    background: greenyellow;
+    margin-left: 10px;
+    align-self: center;
+    border-radius: 50%;
+  }
+  &__online-text {
+    font-size: 16px;
+    color: gray;
+    margin-left: 17px;
+  }
+  &__wrapper {
+    display: flex;
+  }
+  &__username {
+    font-weight: 500;
+    font-size: 13px;
+
+    font-weight: bold;
+  }
+  &__message {
+    display: flex;
+    word-break: break-all;
+    width: fit-content;
+    border-radius: 11px;
+    //box-shadow: inset 0 0 1em #C0C0C0;
+    box-shadow: 1px 1px 10px #c0c0c0;
+    position: relative;
+    background: rgb(18%, 60%, 88%, 0.9);
+    margin-bottom: 20px;
+    padding: 13px;
+    color: white;
+  }
+  &__message-text {
+    word-break: break-all;
+    align-self: center;
+  }
+  &__edit-message {
+    display: flex;
+    padding-left: 10px;
+    justify-content: flex-end;
+  }
+  &__date {
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    margin-left: 20px;
+    font-weight: bold;
+    align-self: center;
+  }
+  &__input-message {
+    width: 100%;
+  }
+  &__header {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  &__title {
+    position: relative;
+    margin-top: 30px;
+    margin-left: 20px;
+    display: flex;
+  }
+  &__content {
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    margin-left: 99px;
+    padding-right: 99px;
+  }
+  &__actions {
+    background: #f7f7f7;
+    margin: 0;
+    height: 120px;
+    &-form {
+      padding: 13px 36px 0 36px;
+      display: flex;
+    }
+  }
 }
-mat-card-actions {
-  background: #f7f7f7;
-  margin: 0;
-  height: 120px;
-}
-.mat-card-actions .mat-button,
-.mat-card-actions .mat-raised-button,
-.mat-card-actions .mat-stroked-button {
-  margin: 0 36px;
-}
-mat-card-content {
-  height: 500px;
-  overflow: scroll;
-  overflow-x: hidden;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: 99px;
-  padding-right: 99px;
-}
-.inpMessage {
-  width: 100%;
-}
-form {
-  padding: 13px 36px 0 36px;
-}
-mat-form-field {
-  width: 80%;
-}
-.sendBtn {
+.chat__send-btn {
   background: #1e89d0;
-  width: 130px;
+  width: 120px;
   height: 50px;
   color: white;
   margin-left: 45px;
   margin-top: 10px;
 }
+
 ::-webkit-scrollbar-button {
   background-repeat: no-repeat;
   width: 6px;
@@ -91,24 +128,12 @@ mat-form-field {
 ::-webkit-scrollbar {
   width: 11px;
 }
-.message_block-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
+.mat-card-actions .mat-button,
+.mat-card-actions .mat-raised-button,
+.mat-card-actions .mat-stroked-button {
+  margin: 0 36px;
 }
-.message_block {
-  display: flex;
-  word-break: break-all;
-  width: fit-content;
-  border-radius: 11px;
-  //box-shadow: inset 0 0 1em #C0C0C0;
-  box-shadow: 1px 1px 10px #c0c0c0;
-  position: relative;
-  background: rgb(18%, 60%, 88%, 0.9);
-  margin-bottom: 20px;
-  padding: 13px;
-  color: white;
-}
+
 .mat-button,
 .mat-icon-button,
 .mat-stroked-button,
@@ -123,33 +148,4 @@ mat-form-field {
 .mat-stroked-button,
 .mat-flat-button {
   padding: 0 3px;
-}
-.block_username {
-  font-weight: 500;
-  font-size: 13px;
-
-  font-weight: bold;
-}
-.message-text {
-  word-break: break-all;
-
-  align-self: center;
-}
-.block_date {
-  white-space: nowrap;
-  margin-left: 20px;
-  font-weight: bold;
-  align-self: center;
-}
-.edit_date {
-  display: flex;
-  padding-left: 10px;
-  justify-content: flex-end;
-}
-.username-date {
-  display: flex;
-  justify-content: space-between;
-}
-.wrapper2 {
-  display: flex;
 }
