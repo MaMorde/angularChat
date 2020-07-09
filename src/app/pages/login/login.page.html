@@ -1,9 +1,9 @@
 <div class="login">
-  <mat-card class="login__mat-card">
-    <mat-card-header class="mat-card__header">
-      <mat-card-title class="mat-card__header-title">Вход</mat-card-title>
+  <mat-card class="login__container">
+    <mat-card-header class="login__header">
+      <mat-card-title class="login__title">Вход</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="mat-card__content">
+    <mat-card-content class="login__content">
       <mat-form-field hintLabel="Max 10 characters" appearance="fill">
         <mat-label>Логин</mat-label>
         <input
@@ -54,10 +54,14 @@
     </mat-card-content>
     <mat-card-actions class="login__buttons">
       <div class="login__buttons-enter">
-        <button mat-button (click)="loginIn()">Войти</button>
+        <button class="login__button" mat-button (click)="loginIn()">
+          Войти
+        </button>
       </div>
       <div class="login__buttons-back">
-        <button mat-button routerLink="/main">Назад</button>
+        <button class="login__button" mat-button routerLink="/main">
+          Назад
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>

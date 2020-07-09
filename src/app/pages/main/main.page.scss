@@ -1,19 +1,8 @@
-.mat-card__header {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  color: black;
-  .mat-card__header-title {
-    font-size: 25px;
-    margin-top: 10px;
-    margin-bottom: 50px;
-  }
-}
 .main {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  &__mat-card {
+  &__container {
     width: 500px;
     height: 250px;
     text-align: center;
@@ -30,5 +19,16 @@
     &-signup {
       margin-top: 10px;
     }
+  }
+  &__header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-bottom: 50px;
+  }
+  &__title {
+    font-size: 25px;
+    margin-top: 10px;
   }
 }

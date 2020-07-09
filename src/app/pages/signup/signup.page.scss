@@ -1,14 +1,3 @@
-.mat-card__header {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  color: black;
-  .mat-card__header-title {
-    font-size: 25px;
-    margin-top: 10px;
-    margin-bottom: 50px;
-  }
-}
 .mat-card__content {
   display: grid;
 }
@@ -17,7 +6,7 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  &__mat-card {
+  &__container {
     width: 500px;
     height: 405px;
     background-color: whitesmoke;
@@ -32,17 +21,29 @@
   }
   &__buttons {
     display: block;
-    button {
-      font-size: 17px;
-      color: white;
-      background: #1e89d0;
-      width: 250px;
-    }
+
     &-registration {
       margin-top: 10px;
     }
     &-back {
       margin-top: 10px;
     }
+  }
+  &__button {
+    font-size: 17px;
+    color: white;
+    background: #1e89d0;
+    width: 250px;
+  }
+  &__header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-bottom: 50px;
+  }
+  &__title {
+    font-size: 25px;
+    margin-top: 10px;
   }
 }

@@ -1,32 +1,3 @@
-.mat-card__header {
-  height: 80px;
-  background-color: #f1f1f1;
-  .mat-card__header-title {
-    position: relative;
-    margin-top: 30px;
-    margin-left: 20px;
-    display: flex;
-  }
-}
-.mat-card__content {
-  height: 400px;
-  overflow: scroll;
-  overflow-x: hidden;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: 99px;
-  padding-right: 99px;
-}
-.mat-card__actions {
-  background: #f7f7f7;
-  margin: 0;
-  height: 120px;
-  &-form {
-    padding: 13px 36px 0 36px;
-    display: flex;
-  }
-}
-
 .mat-form-field {
   width: 80%;
 }
@@ -53,13 +24,13 @@
   &__wrapper {
     display: flex;
   }
-  &__block-username {
+  &__username {
     font-weight: 500;
     font-size: 13px;
 
     font-weight: bold;
   }
-  &__block-message {
+  &__message {
     display: flex;
     word-break: break-all;
     width: fit-content;
@@ -81,17 +52,43 @@
     padding-left: 10px;
     justify-content: flex-end;
   }
-  &__block-date {
+  &__date {
     display: flex;
     justify-content: space-between;
-    &-wrapper {
-      white-space: nowrap;
-      margin-left: 20px;
-      font-weight: bold;
-      align-self: center;
-    }
-    &__input-message {
-      width: 100%;
+    white-space: nowrap;
+    margin-left: 20px;
+    font-weight: bold;
+    align-self: center;
+  }
+  &__input-message {
+    width: 100%;
+  }
+  &__header {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  &__title {
+    position: relative;
+    margin-top: 30px;
+    margin-left: 20px;
+    display: flex;
+  }
+  &__content {
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    margin-left: 99px;
+    padding-right: 99px;
+  }
+  &__actions {
+    background: #f7f7f7;
+    margin: 0;
+    height: 120px;
+    &-form {
+      padding: 13px 36px 0 36px;
+      display: flex;
     }
   }
 }

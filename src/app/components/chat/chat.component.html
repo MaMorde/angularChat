@@ -1,6 +1,6 @@
 <mat-card class="chat">
-  <mat-card-header class="mat-card__header">
-    <mat-card-title class="mat-card__header-title"
+  <mat-card-header class="chat__header">
+    <mat-card-title class="chat__title"
       >{{ getLoggedName() }}
       <div class="chat__online-indicator"></div>
       <span class="chat__online-text">Online</span>
@@ -8,7 +8,7 @@
   </mat-card-header>
 
   <mat-card-content
-    class="mat-card__content"
+    class="chat__content"
     #scrollMe
     [scrollTop]="scrollMe.scrollHeight"
   >
@@ -20,12 +20,12 @@
       "
     >
       <div>
-        <div class="chat__block-username">
+        <div class="chat__username">
           {{ message.user }}
         </div>
         <div
           #back
-          class="chat__block-message"
+          class="chat__message"
           [style.background]="
             message.user == getLoggedName()
               ? 'rgb(18%, 60%, 88%, 0.9)'
@@ -83,18 +83,16 @@
               </button>
             </div>
           </div>
-          <div class="chat__block-date">
-            <div class="chat__block-date-wrapper">
-              {{ message.date | date: "HH:mm" }}
-            </div>
+          <div class="chat__date">
+            {{ message.date | date: "HH:mm" }}
           </div>
         </div>
       </div>
     </div>
   </mat-card-content>
 
-  <mat-card-actions class="mat-card__actions">
-    <form class="mat-card__actions-form">
+  <mat-card-actions class="chat__actions">
+    <form class="chat__actions-form">
       <mat-form-field class="mat-form-field">
         <mat-label>Сообщение</mat-label>
         <input
