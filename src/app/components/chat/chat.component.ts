@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
-import { Message } from '../../interfaces/message';
+import { IMessage } from '../../interfaces/message';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +11,7 @@ import { Message } from '../../interfaces/message';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  public messages: Message[];
+  public messages: IMessage[];
   public message: string;
   public date: Date;
   public beforeEditMessage: string;
@@ -38,8 +38,8 @@ export class ChatComponent implements OnInit {
     return this.date;
   }
   public addMessage(): void {
-    const newMessage: Message = {
-      id: '_' + Math.random().toString(36).substr(2, 9),
+    const newMessage: IMessage = {
+      id: Math.random(),
       user: this.auth.current(),
       text: this.message,
       editing: false,
@@ -56,21 +56,21 @@ export class ChatComponent implements OnInit {
     return this.auth.initLogged();
   }
 
-  public editMessage(message: Message): void {
+  public editMessage(message: IMessage): void {
     this.beforeEditMessage = message.text;
     this.chatServive.editMessageLocal(message);
   }
-  public doneEditMessage(message: Message): void {
+  public doneEditMessage(message: IMessage): void {
     if (this.messageEditControl.invalid) {
       message.text = this.beforeEditMessage;
     }
     this.chatServive.doneEditLocalMessage(message);
   }
-  public cancelEditMessage(message: Message) {
+  public cancelEditMessage(message: IMessage) {
     message.text = this.beforeEditMessage;
     this.chatServive.cancelEditLocalMessage(message);
   }
-  public deleteMessage(message: Message) {
+  public deleteMessage(message: IMessage) {
     this.chatServive.deleteLocalMessage(message.id);
     this.messages = this.chatServive.initMessages();
   }

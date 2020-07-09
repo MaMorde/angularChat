@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../interfaces/user';
+import { IUser } from '../interfaces/user';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   public currentUser: BehaviorSubject<string> = new BehaviorSubject('');
   public isAuth: boolean;
-  private users: User[] = [];
+  private users: IUser[] = [];
 
   constructor(private router: Router) {}
 
@@ -32,12 +32,12 @@ export class AuthService {
     this.currentUser.next(username);
     localStorage.setItem('loggedUser', JSON.stringify(this.currentUser.value));
   }
-  public initUsers(): User[] {
+  public initUsers(): IUser[] {
     this.users = JSON.parse(localStorage.getItem('users')) || [];
     return this.users;
   }
 
-  public signupLocalUser(user: User) {
+  public signupLocalUser(user: IUser) {
     this.users.push(user);
     this.currentUser.next(user.username);
     this.isAuth = true;

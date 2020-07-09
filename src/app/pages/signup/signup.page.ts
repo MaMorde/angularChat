@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../interfaces/user';
+import { IUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +12,7 @@ import { User } from '../../interfaces/user';
 })
 export class SignupPageComponent implements OnInit {
   public hide = true;
-  public users: User[];
+  public users: IUser[];
   public username: string;
   public password: string;
   public signupUsernameControl: FormControl;
@@ -36,8 +36,8 @@ export class SignupPageComponent implements OnInit {
     ]);
   }
   public signupUser(): void {
-    const newUser: User = {
-      id: 'u' + Math.random().toString(36).substr(2, 9),
+    const newUser: IUser = {
+      id: Math.random(),
       username: this.username,
       password: this.password,
     };
