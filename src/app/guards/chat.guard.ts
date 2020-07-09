@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard2 implements CanActivate {
+export class ChatGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   public canActivate(

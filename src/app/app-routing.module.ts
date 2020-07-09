@@ -5,29 +5,29 @@ import { LoginPageComponent } from './pages/login/login.page';
 import { SignupPageComponent } from './pages/signup/signup.page';
 import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AuthGuard2 } from './guards/auth2.guard';
+import { ChatGuard } from './guards/chat.guard';
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainPageComponent,
-    canActivate: [AuthGuard2],
+    canActivate: [ChatGuard],
   },
   {
     path: 'login',
     component: LoginPageComponent,
-    canActivate: [AuthGuard2],
+    canActivate: [ChatGuard],
   },
   {
     path: 'signup',
     component: SignupPageComponent,
-    canActivate: [AuthGuard2],
+    canActivate: [ChatGuard],
   },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   {
     path: '',
     redirectTo: '/main',
-    canActivate: [AuthGuard2],
+    canActivate: [ChatGuard],
     pathMatch: 'full',
   },
 ];
