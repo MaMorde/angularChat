@@ -40,7 +40,11 @@ export class ChatComponent implements OnInit {
   public addMessage(): void {
     const newMessage: IMessage = {
       id: Math.random(),
-      user: this.auth.current(),
+      user: {
+        id: this.auth.currentUser.id,
+        username: this.auth.currentUser.username,
+        password: this.auth.currentUser.password,
+      },
       text: this.message,
       editing: false,
       date: this.dateNow(),
@@ -53,7 +57,7 @@ export class ChatComponent implements OnInit {
   }
 
   public getLoggedName() {
-    return this.auth.initLogged();
+    return this.auth.initLogged().username;
   }
 
   public editMessage(message: IMessage): void {

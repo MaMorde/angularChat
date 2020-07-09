@@ -35,9 +35,11 @@ export class LoginPageComponent implements OnInit {
           eval(localStorage.users)[i].password === this.password
         ) {
           userFound = true;
-          this.auth.currentUser.next(this.username);
+          // tslint:disable-next-line:no-eval
+          this.auth.currentUser = eval(localStorage.users)[i];
           this.auth.setAuth();
-          this.auth.setLogged(this.username);
+          // tslint:disable-next-line:no-eval
+          this.auth.setLogged(eval(localStorage.users)[i]);
           this.username = this.password = '';
           this.router.navigate(['/chat']);
           break;

@@ -11,7 +11,7 @@ export class NavbarComponent {
   constructor(private auth: AuthService) {}
 
   public getLoggedName() {
-    return this.auth.current();
+    return this.auth.currentUser;
   }
   public logout(): void {
     this.auth.logout();

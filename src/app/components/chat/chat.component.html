@@ -16,18 +16,18 @@
       class="chat__wrapper"
       *ngFor="let message of messages"
       [style.justify-content]="
-        message.user == getLoggedName() ? 'flex-end' : 'block'
+        message.user.username == getLoggedName() ? 'flex-end' : 'block'
       "
     >
       <div>
         <div class="chat__username">
-          {{ message.user }}
+          {{ message.user.username }}
         </div>
         <div
           #back
           class="chat__message"
           [style.background]="
-            message.user == getLoggedName()
+            message.user.username == getLoggedName()
               ? 'rgb(18%, 60%, 88%, 0.9)'
               : 'rgb(150, 15, 150)'
           "
@@ -55,7 +55,7 @@
             </div>
           </ng-template>
           <div class="chat__edit-message">
-            <div *ngIf="message.user === getLoggedName()">
+            <div *ngIf="message.user.username === getLoggedName()">
               <button
                 mat-button
                 (click)="editMessage(message)"
