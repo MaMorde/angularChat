@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { IMessage } from '../../interfaces/message';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -14,6 +15,7 @@ export class ChatComponent implements OnInit {
   public messages: IMessage[];
   public message: string;
   public date: Date;
+  public sub: Subscription;
   public beforeEditMessage: string;
   public messageControl: FormControl;
   public messageEditControl: FormControl;
@@ -40,7 +42,7 @@ export class ChatComponent implements OnInit {
   public addMessage() {
     const newMessage: IMessage = {
       id: Math.random(),
-      user: this.auth.currentUser,
+      user: this.auth.currentUser.getValue(),
       text: this.message,
       editing: false,
       date: this.dateNow(),
