@@ -13,14 +13,14 @@ export class AuthService {
 
   constructor(private router: Router) {}
 
-  public current() {
+  public current(): IUser {
     return this.currentUser;
   }
-  public initAuth() {
+  public initAuth(): boolean {
     this.isAuth = JSON.parse(localStorage.getItem('isAuth'));
     return this.isAuth;
   }
-  public initLogged() {
+  public initLogged(): IUser {
     this.currentUser = JSON.parse(localStorage.getItem('loggedUser'));
     return this.currentUser;
   }

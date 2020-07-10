@@ -15,9 +15,9 @@
     <div
       class="chat__wrapper"
       *ngFor="let message of messages"
-      [style.justify-content]="
-        message.user.username == getLoggedName() ? 'flex-end' : 'block'
-      "
+      [ngClass]="{
+        chat__mymessage: message.user.username === getLoggedName()
+      }"
     >
       <div>
         <div class="chat__username">

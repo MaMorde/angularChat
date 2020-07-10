@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   public messageEditControl: FormControl;
   constructor(private auth: AuthService, private chatServive: ChatService) {}
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';
@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
     this.date = new Date();
     return this.date;
   }
-  public addMessage(): void {
+  public addMessage() {
     const newMessage: IMessage = {
       id: Math.random(),
       user: {
@@ -60,11 +60,11 @@ export class ChatComponent implements OnInit {
     return this.auth.initLogged().username;
   }
 
-  public editMessage(message: IMessage): void {
+  public editMessage(message: IMessage) {
     this.beforeEditMessage = message.text;
     this.chatServive.editMessageLocal(message);
   }
-  public doneEditMessage(message: IMessage): void {
+  public doneEditMessage(message: IMessage) {
     if (this.messageEditControl.invalid) {
       message.text = this.beforeEditMessage;
     }
