@@ -16,16 +16,16 @@ export class AuthService implements OnInit {
   //   return this.currentUser;
   // }
   public ngOnInit() {
-    this.currentUser.subscribe();
+    this.currentUser.subscribe((user) =>
+      localStorage.setItem('loggedUser', JSON.stringify(user))
+    );
   }
   public getAuthUser(): IUser {
-    this.currentUser = JSON.parse(localStorage.getItem('loggedUser'));
-    return this.currentUser.getValue();
+    return JSON.parse(localStorage.getItem('loggedUser'));
   }
 
   public setAuthUser(user: IUser) {
     this.currentUser.next(user);
-    localStorage.setItem('loggedUser', JSON.stringify(this.currentUser));
   }
   public initUsers(): IUser[] {
     this.users = JSON.parse(localStorage.getItem('users')) || [];
@@ -40,7 +40,5 @@ export class AuthService implements OnInit {
 
   public logout() {
     this.currentUser.next(null);
-    localStorage.setItem('loggedUser', JSON.stringify(this.currentUser));
-    this.router.navigate(['/main']);
   }
 }
