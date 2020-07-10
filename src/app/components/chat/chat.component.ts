@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
   }
 
   public getLoggedName() {
-    return this.auth.initLogged().username;
+    return this.auth.getAuthUser().username;
   }
 
   public editMessage(message: IMessage) {

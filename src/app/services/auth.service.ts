@@ -16,12 +16,12 @@ export class AuthService {
   //   return this.currentUser;
   // }
 
-  public initLogged(): IUser {
+  public getAuthUser(): IUser {
     this.currentUser = JSON.parse(localStorage.getItem('loggedUser'));
     return this.currentUser;
   }
 
-  public setLogged(user: IUser) {
+  public setAuthUser(user: IUser) {
     this.currentUser = user;
     localStorage.setItem('loggedUser', JSON.stringify(this.currentUser));
   }

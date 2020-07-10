@@ -65,7 +65,7 @@ export class SignupPageComponent implements OnInit {
       return;
     } else {
       this.Auth.signupLocalUser(newUser);
-      this.Auth.setLogged(newUser);
+      this.Auth.setAuthUser(newUser);
       this.username = this.password = '';
       this.router.navigate(['/chat']);
       this.users = this.Auth.initUsers();
