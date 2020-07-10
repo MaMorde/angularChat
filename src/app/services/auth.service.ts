@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private router: Router) {}
 
-  public current(): IUser {
-    return this.currentUser;
-  }
+  // public current(): IUser {
+  //   return this.currentUser;
+  // }
   public initAuth(): boolean {
     this.isAuth = JSON.parse(localStorage.getItem('isAuth'));
     return this.isAuth;
