@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   public currentUser: IUser;
-  public isAuth: boolean;
   private users: IUser[] = [];
 
   constructor(private router: Router) {}
@@ -16,18 +15,12 @@ export class AuthService {
   // public current(): IUser {
   //   return this.currentUser;
   // }
-  public initAuth(): boolean {
-    this.isAuth = JSON.parse(localStorage.getItem('isAuth'));
-    return this.isAuth;
-  }
+
   public initLogged(): IUser {
     this.currentUser = JSON.parse(localStorage.getItem('loggedUser'));
     return this.currentUser;
   }
-  public setAuth() {
-    this.isAuth = true;
-    localStorage.setItem('isAuth', JSON.stringify(this.isAuth));
-  }
+
   public setLogged(user: IUser) {
     this.currentUser = user;
     localStorage.setItem('loggedUser', JSON.stringify(this.currentUser));
@@ -39,15 +32,13 @@ export class AuthService {
 
   public signupLocalUser(user: IUser) {
     this.users.push(user);
-    this.isAuth = true;
     this.currentUser = user;
     localStorage.setItem('users', JSON.stringify(this.users));
   }
 
   public logout() {
-    this.isAuth = false;
     this.currentUser = null;
-    localStorage.setItem('isAuth', JSON.stringify(this.isAuth));
+    localStorage.setItem('loggedUser', JSON.stringify(this.currentUser));
     this.router.navigate(['/main']);
   }
 }
