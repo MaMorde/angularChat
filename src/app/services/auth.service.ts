@@ -39,5 +39,6 @@ export class AuthService implements OnInit {
 
   public logout() {
     this.currentUser.next(null);
+    this.router.navigate(['/main']);
   }
 }
