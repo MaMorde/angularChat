@@ -22,6 +22,9 @@ export class ChatComponent implements OnInit {
   constructor(private auth: AuthService, private chatServive: ChatService) {}
 
   public ngOnInit() {
+    this.auth.currentUser.subscribe((user) =>
+      localStorage.setItem('loggedUser', JSON.stringify(user))
+    );
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';

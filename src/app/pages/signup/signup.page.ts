@@ -17,10 +17,13 @@ export class SignupPageComponent implements OnInit {
   public signupUsernameControl: FormControl;
   public signupPasswordControl: FormControl;
 
-  constructor(private router: Router, private Auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   public ngOnInit(): void {
-    this.users = this.Auth.initUsers();
+    this.auth.currentUser.subscribe((user) =>
+      localStorage.setItem('loggedUser', JSON.stringify(user))
+    );
+    this.users = this.auth.initUsers();
     this.username = '';
     this.password = '';
     this.signupUsernameControl = new FormControl('', [
@@ -63,11 +66,11 @@ export class SignupPageComponent implements OnInit {
       alert('Такое имя уже использовано, введите другое!');
       return;
     } else {
-      this.Auth.signupLocalUser(newUser);
-      this.Auth.setAuthUser(newUser);
+      this.auth.signupLocalUser(newUser);
+      this.auth.setAuthUser(newUser);
       this.username = this.password = '';
       this.router.navigate(['/chat']);
-      this.users = this.Auth.initUsers();
+      this.users = this.auth.initUsers();
     }
   }
 }

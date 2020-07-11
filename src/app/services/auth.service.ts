@@ -15,11 +15,7 @@ export class AuthService implements OnInit {
   // public current(): IUser {
   //   return this.currentUser;
   // }
-  public ngOnInit() {
-    this.currentUser.subscribe((user) =>
-      localStorage.setItem('loggedUser', JSON.stringify(user))
-    );
-  }
+  public ngOnInit() {}
   public getAuthUser(): IUser {
     return JSON.parse(localStorage.getItem('loggedUser'));
   }

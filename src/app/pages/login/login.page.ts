@@ -17,6 +17,9 @@ export class LoginPageComponent implements OnInit {
   public loginPasswordControl: FormControl;
 
   public ngOnInit(): void {
+    this.auth.currentUser.subscribe((user) =>
+      localStorage.setItem('loggedUser', JSON.stringify(user))
+    );
     this.username = '';
     this.password = '';
     this.loginUsernameControl = new FormControl('', [Validators.required]);
