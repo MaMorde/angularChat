@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +34,6 @@ export class AuthService implements OnInit {
 
   public signupLocalUser(user: IUser) {
     this.users.push(user);
-    this.currentUser.next(user);
     localStorage.setItem('users', JSON.stringify(this.users));
   }
 

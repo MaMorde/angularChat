@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
         ) {
           userFound = true;
           // tslint:disable-next-line:no-eval
-          this.auth.currentUser = eval(localStorage.users)[i];
+          this.auth.currentUser.next(eval(localStorage.users)[i]);
           // tslint:disable-next-line:no-eval
           this.auth.setAuthUser(eval(localStorage.users)[i]);
           this.username = this.password = '';
