@@ -7,11 +7,7 @@
     </mat-card-title>
   </mat-card-header>
 
-  <mat-card-content
-    class="chat__content"
-    #scrollMe
-    [scrollTop]="scrollMe.scrollHeight"
-  >
+  <mat-card-content class="chat__content" #container>
     <div
       class="chat__wrapper"
       *ngFor="let message of messages"
@@ -70,6 +66,7 @@
                   mat-button
                   (click)="doneEditMessage(message)"
                   [disabled]="messageEditControl.invalid"
+                  [disabled]="!(message && message.trim())"
                 >
                   <span class="material-icons">
                     done
@@ -109,7 +106,7 @@
       </mat-form-field>
 
       <button
-        [disabled]="messageControl.invalid"
+        [disabled]="!(message && message.trim())"
         mat-button
         class="chat__send-btn"
         (click)="addMessage()"
