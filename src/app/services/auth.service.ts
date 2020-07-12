@@ -6,20 +6,16 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnInit {
+export class AuthService {
   public currentUser: BehaviorSubject<IUser> = new BehaviorSubject(null);
   private users: IUser[] = [];
 
-  constructor(private router: Router) {}
-
-  // public current(): IUser {
-  //   return this.currentUser;
-  // }
-  public ngOnInit() {
+  constructor(private router: Router) {
     this.currentUser.subscribe((user) =>
       localStorage.setItem('loggedUser', JSON.stringify(user))
     );
   }
+
   public getAuthUser(): IUser {
     return JSON.parse(localStorage.getItem('loggedUser'));
   }
