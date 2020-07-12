@@ -1,13 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public currentUser: BehaviorSubject<IUser> = new BehaviorSubject(null);
+  public currentUser: Subject<IUser> = new Subject();
   private users: IUser[] = [];
 
   constructor(private router: Router) {
