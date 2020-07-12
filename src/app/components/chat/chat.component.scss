@@ -47,6 +47,9 @@
     word-break: break-all;
     align-self: center;
   }
+  &__mymessage {
+    justify-content: flex-end;
+  }
   &__edit-message {
     display: flex;
     padding-left: 10px;

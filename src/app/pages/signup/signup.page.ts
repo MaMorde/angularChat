@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../interfaces/user';
+import { IUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-signup',
@@ -12,16 +11,16 @@ import { User } from '../../interfaces/user';
 })
 export class SignupPageComponent implements OnInit {
   public hide = true;
-  public users: User[];
+  public users: IUser[];
   public username: string;
   public password: string;
   public signupUsernameControl: FormControl;
   public signupPasswordControl: FormControl;
 
-  constructor(private router: Router, private Auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   public ngOnInit(): void {
-    this.users = this.Auth.initUsers();
+    this.users = this.auth.initUsers();
     this.username = '';
     this.password = '';
     this.signupUsernameControl = new FormControl('', [
@@ -36,8 +35,8 @@ export class SignupPageComponent implements OnInit {
     ]);
   }
   public signupUser(): void {
-    const newUser: User = {
-      id: 'u' + Math.random().toString(36).substr(2, 9),
+    const newUser: IUser = {
+      id: Math.random(),
       username: this.username,
       password: this.password,
     };
@@ -64,12 +63,11 @@ export class SignupPageComponent implements OnInit {
       alert('Такое имя уже использовано, введите другое!');
       return;
     } else {
-      this.Auth.signupLocalUser(newUser);
-      this.Auth.setAuth();
-      this.Auth.setLogged(this.username);
+      this.auth.signupLocalUser(newUser);
+      this.auth.setAuthUser(newUser);
       this.username = this.password = '';
       this.router.navigate(['/chat']);
-      this.users = this.Auth.initUsers();
+      this.users = this.auth.initUsers();
     }
   }
 }

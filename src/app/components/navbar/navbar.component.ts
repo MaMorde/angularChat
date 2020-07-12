@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -11,7 +11,7 @@ export class NavbarComponent {
   constructor(private auth: AuthService) {}
 
   public getLoggedName() {
-    return this.auth.current();
+    return this.auth.getAuthUser();
   }
   public logout(): void {
     this.auth.logout();
