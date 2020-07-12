@@ -7,13 +7,9 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   constructor(private auth: AuthService) {}
-  public ngOnInit() {
-    this.auth.currentUser.subscribe((user) =>
-      localStorage.setItem('loggedUser', JSON.stringify(user))
-    );
-  }
+
   public getLoggedName() {
     return this.auth.getAuthUser();
   }

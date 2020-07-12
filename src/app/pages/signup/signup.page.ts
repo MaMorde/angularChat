@@ -20,9 +20,6 @@ export class SignupPageComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) {}
 
   public ngOnInit(): void {
-    this.auth.currentUser.subscribe((user) =>
-      localStorage.setItem('loggedUser', JSON.stringify(user))
-    );
     this.users = this.auth.initUsers();
     this.username = '';
     this.password = '';

@@ -22,15 +22,12 @@ export class ChatComponent implements OnInit {
   constructor(private auth: AuthService, private chatServive: ChatService) {}
 
   public ngOnInit() {
-    this.auth.currentUser.subscribe((user) =>
-      localStorage.setItem('loggedUser', JSON.stringify(user))
-    );
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';
     this.messageControl = new FormControl('', [
       Validators.required,
-      Validators.pattern('^[^ ]+'),
+      // Validators.pattern('^[^ ]+'),
     ]);
     this.messageEditControl = new FormControl('', [
       Validators.required,
@@ -46,7 +43,7 @@ export class ChatComponent implements OnInit {
     const newMessage: IMessage = {
       id: Math.random(),
       user: this.auth.getAuthUser(),
-      text: this.message,
+      text: this.message.trim(),
       editing: false,
       date: this.dateNow(),
     };
