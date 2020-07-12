@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +18,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
+  constructor(private auth: AuthService, private chatServive: ChatService) {}
   public messages: IMessage[];
   public message: string;
   public date: Date;
@@ -19,27 +27,29 @@ export class ChatComponent implements OnInit {
   public beforeEditMessage: string;
   public messageControl: FormControl;
   public messageEditControl: FormControl;
-  constructor(private auth: AuthService, private chatServive: ChatService) {}
+  @ViewChild('container') public container: ElementRef;
 
   public ngOnInit() {
     this.messages = this.chatServive.initMessages();
     this.message = '';
     this.beforeEditMessage = '';
-    this.messageControl = new FormControl('', [
-      Validators.required,
-      // Validators.pattern('^[^ ]+'),
-    ]);
-    this.messageEditControl = new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[^ ]+'),
-    ]);
+    this.messageControl = new FormControl('', []);
+    this.messageEditControl = new FormControl('', []);
   }
-
+  public ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+  private scrollToBottom() {
+    const container: HTMLDivElement = this.container.nativeElement;
+    setTimeout(() => (container.scrollTop = container.scrollHeight), 0);
+  }
   public dateNow(): Date {
     this.date = new Date();
     return this.date;
   }
   public addMessage() {
+    this.scrollToBottom();
+
     const newMessage: IMessage = {
       id: Math.random(),
       user: this.auth.getAuthUser(),
