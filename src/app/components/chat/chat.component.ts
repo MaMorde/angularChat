@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('container') public container: ElementRef;
 
   public ngOnInit() {
-    this.messages = this.chatServive.initMessages();
+    this.messages = this.chatServive.getMessages();
     this.message = '';
     this.beforeEditMessage = '';
     this.messageControl = new FormControl('', []);
@@ -57,11 +57,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
       editing: false,
       date: this.dateNow(),
     };
-    this.chatServive.addLocalMessage(newMessage);
+    this.chatServive.addMessage(newMessage);
 
     this.message = '';
 
-    this.messages = this.chatServive.initMessages();
+    this.messages = this.chatServive.getMessages();
   }
 
   public getLoggedName() {
@@ -70,20 +70,20 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   public editMessage(message: IMessage) {
     this.beforeEditMessage = message.text;
-    this.chatServive.editMessageLocal(message);
+    this.chatServive.editMessage(message);
   }
   public doneEditMessage(message: IMessage) {
     if (this.messageEditControl.invalid) {
       message.text = this.beforeEditMessage;
     }
-    this.chatServive.doneEditLocalMessage(message);
+    this.chatServive.doneEditMessage(message);
   }
   public cancelEditMessage(message: IMessage) {
     message.text = this.beforeEditMessage;
-    this.chatServive.cancelEditLocalMessage(message);
+    this.chatServive.cancelEditMessage(message);
   }
   public deleteMessage(message: IMessage) {
-    this.chatServive.deleteLocalMessage(message.id);
-    this.messages = this.chatServive.initMessages();
+    this.chatServive.deleteMessage(message.id);
+    this.messages = this.chatServive.getMessages();
   }
 }

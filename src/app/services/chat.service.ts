@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interfaces/message';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
-  public messages: IMessage[] = [];
+  public messages: BehaviorSubject<IMessage[]> = new BehaviorSubject([]);
 
-  public initMessages(): IMessage[] {
+  public getMessages(): IMessage[] {
     this.messages = JSON.parse(localStorage.getItem('messages')) || [];
     return this.messages;
   }
-  public addLocalMessage(message: IMessage) {
+  public addMessage(message: IMessage) {
     this.messages.push(message);
     localStorage.setItem('messages', JSON.stringify(this.messages));
   }
-  public editMessageLocal(message: IMessage) {
+  public editMessage(message: IMessage) {
     message.editing = true;
     localStorage.setItem('messages', JSON.stringify(this.messages));
   }
-  public doneEditLocalMessage(message: IMessage) {
+  public doneEditMessage(message: IMessage) {
     message.editing = false;
     localStorage.setItem('messages', JSON.stringify(this.messages));
   }
-  public cancelEditLocalMessage(message: IMessage) {
+  public cancelEditMessage(message: IMessage) {
     message.editing = false;
     localStorage.setItem('messages', JSON.stringify(this.messages));
   }
-  public deleteLocalMessage(id: number) {
+  public deleteMessage(id: number) {
     this.messages = this.messages.filter((message) => message.id !== id);
     localStorage.setItem('messages', JSON.stringify(this.messages));
   }
