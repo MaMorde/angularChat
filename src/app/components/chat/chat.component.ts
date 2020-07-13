@@ -1,13 +1,12 @@
 import {
   Component,
   OnInit,
-  ChangeDetectorRef,
   AfterViewInit,
   ViewChild,
   ElementRef,
 } from '@angular/core';
 
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { IMessage } from '../../interfaces/message';
@@ -30,7 +29,10 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('container') public container: ElementRef;
 
   public ngOnInit() {
-    this.messages = this.chatServive.getMessages();
+    this.chatServive
+      .getMessages()
+      .subscribe((messages) => (this.messages = messages));
+
     this.message = '';
     this.beforeEditMessage = '';
     this.messageControl = new FormControl('', []);
@@ -60,11 +62,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.chatServive.addMessage(newMessage);
 
     this.message = '';
-
-    this.messages = this.chatServive.getMessages();
   }
 
-  public getLoggedName() {
+  public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
 
@@ -84,6 +84,5 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
   public deleteMessage(message: IMessage) {
     this.chatServive.deleteMessage(message.id);
-    this.messages = this.chatServive.getMessages();
   }
 }
