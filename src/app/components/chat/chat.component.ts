@@ -24,9 +24,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public editing: boolean;
   public date: Date;
   public indexMessage: number;
-  public sub: Subscription;
   public messageControl: FormControl;
-  public messageEditControl: FormControl;
   @ViewChild('container') public container: ElementRef;
   @ViewChild('focus') public focus: ElementRef;
 
@@ -37,8 +35,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
     this.messageInput = '';
     this.editing = false;
-    this.messageControl = new FormControl('', []);
-    this.messageEditControl = new FormControl('', []);
+    this.messageControl = new FormControl('');
   }
   public ngAfterViewInit() {
     this.scrollToBottom();

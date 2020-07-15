@@ -34,13 +34,13 @@
 
           <div class="chat__edit-message">
             <div *ngIf="message.user.username === getLoggedName()">
-              <button mat-button (click)="editMessage(message)">
+              <button mat-icon-button (click)="editMessage(message)">
                 <span class="material-icons">
                   edit
                 </span>
               </button>
 
-              <button mat-button (click)="deleteMessage(message)">
+              <button mat-icon-button (click)="deleteMessage(message)">
                 <span class="material-icons">
                   delete
                 </span>
@@ -57,7 +57,7 @@
 
   <mat-card-actions class="chat__actions">
     <form class="chat__actions-form">
-      <mat-form-field class="mat-form-field">
+      <mat-form-field class="chat__mat-form-field">
         <mat-label>Сообщение</mat-label>
         <input
           #focus
