@@ -20,10 +20,11 @@ import { Subscription } from 'rxjs';
 export class ChatComponent implements OnInit, AfterViewInit {
   constructor(private auth: AuthService, private chatServive: ChatService) {}
   public messages: IMessage[];
-  public message: string;
+  public messageInput: string;
+  public editing: boolean;
   public date: Date;
+  public indexMessage: number;
   public sub: Subscription;
-  public beforeEditMessage: string;
   public messageControl: FormControl;
   public messageEditControl: FormControl;
   @ViewChild('container') public container: ElementRef;
@@ -33,8 +34,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
       .getMessages()
       .subscribe((messages) => (this.messages = messages));
 
-    this.message = '';
-    this.beforeEditMessage = '';
+    this.messageInput = '';
+    this.editing = false;
     this.messageControl = new FormControl('', []);
     this.messageEditControl = new FormControl('', []);
   }
@@ -55,32 +56,33 @@ export class ChatComponent implements OnInit, AfterViewInit {
     const newMessage: IMessage = {
       id: Math.random(),
       user: this.auth.getAuthUser(),
-      text: this.message.trim(),
-      editing: false,
+      text: this.messageInput.trim(),
       date: this.dateNow(),
     };
     this.chatServive.addMessage(newMessage);
+  }
+  public onSumbit() {
+    if (this.editing === false) {
+      this.addMessage();
+    } else {
+      this.doneEditMessage(this.indexMessage);
+    }
 
-    this.message = '';
+    this.messageInput = '';
   }
 
   public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
-
   public editMessage(message: IMessage) {
-    this.beforeEditMessage = message.text;
-    this.chatServive.editMessage(message);
+    this.editing = true;
+    this.messageInput = message.text;
+    this.indexMessage = this.messages.indexOf(message);
   }
-  public doneEditMessage(message: IMessage) {
-    if (this.messageEditControl.invalid) {
-      message.text = this.beforeEditMessage;
-    }
-    this.chatServive.doneEditMessage(message);
-  }
-  public cancelEditMessage(message: IMessage) {
-    message.text = this.beforeEditMessage;
-    this.chatServive.cancelEditMessage(message);
+  public doneEditMessage(index: number) {
+    this.editing = false;
+    this.messages[index].text = this.messageInput;
+    this.chatServive.doneEditMessage(this.messages[index]);
   }
   public deleteMessage(message: IMessage) {
     this.chatServive.deleteMessage(message.id);

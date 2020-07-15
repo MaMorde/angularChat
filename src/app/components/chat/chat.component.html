@@ -28,51 +28,18 @@
               : 'rgb(150, 15, 150)'
           "
         >
-          <div
-            class="chat__message-text"
-            *ngIf="!message.editing; else editingMessage"
-          >
+          <div class="chat__message-text">
             {{ message.text }}
           </div>
-          <ng-template #editingMessage>
-            <div>
-              <mat-form-field>
-                <input
-                  matInput
-                  [formControl]="messageEditControl"
-                  type="text"
-                  [(ngModel)]="message.text"
-                  (keyup.enter)="doneEditMessage(message)"
-                  (keyup.escape)="cancelEditMessage(message)"
-                  autofocus
-                  maxlength="256"
-                />
-              </mat-form-field>
-            </div>
-          </ng-template>
+
           <div class="chat__edit-message">
             <div *ngIf="message.user.username === getLoggedName()">
-              <button
-                mat-button
-                (click)="editMessage(message)"
-                *ngIf="!message.editing; else doneEdit"
-              >
+              <button mat-button (click)="editMessage(message)">
                 <span class="material-icons">
                   edit
                 </span>
               </button>
-              <ng-template #doneEdit>
-                <button
-                  mat-button
-                  (click)="doneEditMessage(message)"
-                  [disabled]="messageEditControl.invalid"
-                  [disabled]="!(message && message.trim())"
-                >
-                  <span class="material-icons">
-                    done
-                  </span>
-                </button>
-              </ng-template>
+
               <button mat-button (click)="deleteMessage(message)">
                 <span class="material-icons">
                   delete
@@ -97,19 +64,19 @@
           [formControl]="messageControl"
           class="chat__input-message"
           autocomplete="off"
-          [(ngModel)]="message"
+          [(ngModel)]="messageInput"
           maxlength="256"
           placeholder="Введите сообщение..."
         />
         <mat-hint align="start"> </mat-hint>
-        <mat-hint align="end">{{ message.length }} / 256</mat-hint>
+        <mat-hint align="end">{{ messageInput.length }} / 256</mat-hint>
       </mat-form-field>
 
       <button
-        [disabled]="!(message && message.trim())"
+        [disabled]="!(messageInput && messageInput.trim())"
         mat-button
         class="chat__send-btn"
-        (click)="addMessage()"
+        (click)="onSumbit()"
       >
         Отправить
       </button>

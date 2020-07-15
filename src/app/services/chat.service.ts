@@ -24,16 +24,8 @@ export class ChatService {
     this.messages.push(message);
     this.subjectMessages.next(this.messages);
   }
-  public editMessage(message: IMessage) {
-    message.editing = true;
-    this.subjectMessages.next(this.messages);
-  }
+
   public doneEditMessage(message: IMessage) {
-    message.editing = false;
-    this.subjectMessages.next(this.messages);
-  }
-  public cancelEditMessage(message: IMessage) {
-    message.editing = false;
     this.subjectMessages.next(this.messages);
   }
   public deleteMessage(id: number) {
