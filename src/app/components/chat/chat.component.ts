@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public messageControl: FormControl;
   public messageEditControl: FormControl;
   @ViewChild('container') public container: ElementRef;
+  @ViewChild('focus') public focus: ElementRef;
 
   public ngOnInit() {
     this.chatServive
@@ -78,6 +79,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.editing = true;
     this.messageInput = message.text;
     this.indexMessage = this.messages.indexOf(message);
+    const focus: HTMLDivElement = this.focus.nativeElement;
+    focus.focus();
   }
   public doneEditMessage(index: number) {
     this.editing = false;
