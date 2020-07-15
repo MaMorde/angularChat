@@ -1,13 +1,12 @@
 import {
   Component,
   OnInit,
-  ChangeDetectorRef,
   AfterViewInit,
   ViewChild,
   ElementRef,
 } from '@angular/core';
 
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { IMessage } from '../../interfaces/message';
@@ -21,20 +20,22 @@ import { Subscription } from 'rxjs';
 export class ChatComponent implements OnInit, AfterViewInit {
   constructor(private auth: AuthService, private chatServive: ChatService) {}
   public messages: IMessage[];
-  public message: string;
+  public messageInput: string;
+  public editing: boolean;
   public date: Date;
-  public sub: Subscription;
-  public beforeEditMessage: string;
+  public indexMessage: number;
   public messageControl: FormControl;
-  public messageEditControl: FormControl;
   @ViewChild('container') public container: ElementRef;
+  @ViewChild('focus') public focus: ElementRef;
 
   public ngOnInit() {
-    this.messages = this.chatServive.initMessages();
-    this.message = '';
-    this.beforeEditMessage = '';
-    this.messageControl = new FormControl('', []);
-    this.messageEditControl = new FormControl('', []);
+    this.chatServive
+      .getMessages()
+      .subscribe((messages) => (this.messages = messages));
+
+    this.messageInput = '';
+    this.editing = false;
+    this.messageControl = new FormControl('');
   }
   public ngAfterViewInit() {
     this.scrollToBottom();
@@ -53,37 +54,41 @@ export class ChatComponent implements OnInit, AfterViewInit {
     const newMessage: IMessage = {
       id: Math.random(),
       user: this.auth.getAuthUser(),
-      text: this.message.trim(),
-      editing: false,
+      text: this.messageInput.trim(),
       date: this.dateNow(),
     };
-    this.chatServive.addLocalMessage(newMessage);
+    this.chatServive.addMessage(newMessage);
+  }
+  public onSumbit() {
+    if (this.editing === false) {
+      this.addMessage();
+    } else {
+      this.doneEditMessage(this.indexMessage);
+    }
 
-    this.message = '';
-
-    this.messages = this.chatServive.initMessages();
+    this.messageInput = '';
   }
 
-  public getLoggedName() {
+  public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
-
   public editMessage(message: IMessage) {
-    this.beforeEditMessage = message.text;
-    this.chatServive.editMessageLocal(message);
+    this.editing = true;
+    this.messageInput = message.text;
+    this.indexMessage = this.messages.indexOf(message);
+    const focus: HTMLDivElement = this.focus.nativeElement;
+    focus.focus();
   }
-  public doneEditMessage(message: IMessage) {
-    if (this.messageEditControl.invalid) {
-      message.text = this.beforeEditMessage;
-    }
-    this.chatServive.doneEditLocalMessage(message);
+  public doneEditMessage(index: number) {
+    this.editing = false;
+    this.messages[index].text = this.messageInput;
+    this.chatServive.doneEditMessage();
   }
-  public cancelEditMessage(message: IMessage) {
-    message.text = this.beforeEditMessage;
-    this.chatServive.cancelEditLocalMessage(message);
+  public cancelEditMessage() {
+    this.editing = false;
+    this.messageInput = '';
   }
   public deleteMessage(message: IMessage) {
-    this.chatServive.deleteLocalMessage(message.id);
-    this.messages = this.chatServive.initMessages();
+    this.chatServive.deleteMessage(message.id);
   }
 }

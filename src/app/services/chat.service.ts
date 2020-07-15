@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interfaces/message';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
   public messages: IMessage[] = [];
+  private subjectMessages: BehaviorSubject<IMessage[]> = null;
 
-  public initMessages(): IMessage[] {
-    this.messages = JSON.parse(localStorage.getItem('messages')) || [];
-    return this.messages;
+  constructor() {
+    const messagesParsed = JSON.parse(localStorage.getItem('messages'));
+    this.messages = messagesParsed ? messagesParsed : [];
+    this.subjectMessages = new BehaviorSubject<IMessage[]>(this.messages);
+    this.subjectMessages.subscribe((messages) =>
+      localStorage.setItem('messages', JSON.stringify(messages))
+    );
   }
-  public addLocalMessage(message: IMessage) {
+  public getMessages(): BehaviorSubject<IMessage[]> {
+    return this.subjectMessages;
+  }
+  public addMessage(message: IMessage) {
     this.messages.push(message);
-    localStorage.setItem('messages', JSON.stringify(this.messages));
+    this.subjectMessages.next(this.messages);
   }
-  public editMessageLocal(message: IMessage) {
-    message.editing = true;
-    localStorage.setItem('messages', JSON.stringify(this.messages));
+
+  public doneEditMessage() {
+    this.subjectMessages.next(this.messages);
   }
-  public doneEditLocalMessage(message: IMessage) {
-    message.editing = false;
-    localStorage.setItem('messages', JSON.stringify(this.messages));
-  }
-  public cancelEditLocalMessage(message: IMessage) {
-    message.editing = false;
-    localStorage.setItem('messages', JSON.stringify(this.messages));
-  }
-  public deleteLocalMessage(id: number) {
+  public deleteMessage(id: number) {
     this.messages = this.messages.filter((message) => message.id !== id);
-    localStorage.setItem('messages', JSON.stringify(this.messages));
+    this.subjectMessages.next(this.messages);
   }
 }

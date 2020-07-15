@@ -1,6 +1,3 @@
-.mat-form-field {
-  width: 80%;
-}
 .mat-card-header-text {
   margin: 0 !important;
 }
@@ -94,14 +91,31 @@
       display: flex;
     }
   }
-}
-.chat__send-btn {
-  background: #1e89d0;
-  width: 120px;
-  height: 50px;
-  color: white;
-  margin-left: 45px;
-  margin-top: 10px;
+  &__mat-form-field {
+    width: 80%;
+    margin-right: 25px;
+  }
+  &__cancel-btn {
+    background: #1e89d0;
+    width: 120px;
+    height: 50px;
+    color: white;
+    margin: 0;
+  }
+  &__edit-btn {
+    background: #1e89d0;
+    width: 120px;
+    height: 50px;
+    color: white;
+    margin-left: 45px;
+  }
+  &__send-btn {
+    background: #1e89d0;
+    width: 120px;
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+  }
 }
 
 ::-webkit-scrollbar-button {
@@ -130,11 +144,6 @@
 
 ::-webkit-scrollbar {
   width: 11px;
-}
-.mat-card-actions .mat-button,
-.mat-card-actions .mat-raised-button,
-.mat-card-actions .mat-stroked-button {
-  margin: 0 36px;
 }
 
 .mat-button,
