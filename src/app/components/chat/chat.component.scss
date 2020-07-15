@@ -1,5 +1,6 @@
 .mat-form-field {
   width: 80%;
+  margin-right: 25px;
 }
 .mat-card-header-text {
   margin: 0 !important;
@@ -100,8 +101,22 @@
   width: 120px;
   height: 50px;
   color: white;
-  margin-left: 45px;
+
   margin-top: 10px;
+}
+.chat__cancel-btn {
+  background: #1e89d0;
+  width: 120px;
+  height: 50px;
+  color: white;
+  margin: 0;
+}
+.chat__edit-btn {
+  background: #1e89d0;
+  width: 120px;
+  height: 50px;
+  color: white;
+  margin-left: 45px;
 }
 
 ::-webkit-scrollbar-button {
@@ -130,11 +145,6 @@
 
 ::-webkit-scrollbar {
   width: 11px;
-}
-.mat-card-actions .mat-button,
-.mat-card-actions .mat-raised-button,
-.mat-card-actions .mat-stroked-button {
-  margin: 0 36px;
 }
 
 .mat-button,

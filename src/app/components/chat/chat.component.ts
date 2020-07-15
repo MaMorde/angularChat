@@ -84,6 +84,10 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.messages[index].text = this.messageInput;
     this.chatServive.doneEditMessage(this.messages[index]);
   }
+  public cancelEditMessage() {
+    this.editing = false;
+    this.messageInput = '';
+  }
   public deleteMessage(message: IMessage) {
     this.chatServive.deleteMessage(message.id);
   }
