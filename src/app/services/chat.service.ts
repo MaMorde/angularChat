@@ -25,7 +25,7 @@ export class ChatService {
     this.subjectMessages.next(this.messages);
   }
 
-  public doneEditMessage(message: IMessage) {
+  public doneEditMessage() {
     this.subjectMessages.next(this.messages);
   }
   public deleteMessage(id: number) {

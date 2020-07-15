@@ -82,7 +82,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public doneEditMessage(index: number) {
     this.editing = false;
     this.messages[index].text = this.messageInput;
-    this.chatServive.doneEditMessage(this.messages[index]);
+    this.chatServive.doneEditMessage();
   }
   public cancelEditMessage() {
     this.editing = false;
