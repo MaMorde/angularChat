@@ -10,7 +10,6 @@ import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { IMessage } from '../../interfaces/message';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -29,9 +28,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('focus') public focus: ElementRef;
 
   public ngOnInit() {
-    this.chatServive
-      .getMessages()
-      .subscribe((messages) => (this.messages = messages));
+    this.chatServive.getMessages().subscribe();
 
     this.messageInput = '';
     this.editing = false;

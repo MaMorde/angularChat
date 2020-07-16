@@ -10,7 +10,7 @@
   <mat-card-content class="chat__content" #container>
     <div
       class="chat__wrapper"
-      *ngFor="let message of messages"
+      *ngFor="let message of messages | async"
       [ngClass]="{
         chat__mymessage: message.user.username === getLoggedName()
       }"
