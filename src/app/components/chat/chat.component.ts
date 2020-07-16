@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ChatService } from '../../services/chat.service';
 import { IMessage } from '../../interfaces/message';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -18,7 +19,7 @@ import { IMessage } from '../../interfaces/message';
 })
 export class ChatComponent implements OnInit, AfterViewInit {
   constructor(private auth: AuthService, private chatServive: ChatService) {}
-  public messages: IMessage[];
+  public messages: Observable<IMessage[]>;
   public messageInput: string;
   public editing: boolean;
   public date: Date;
@@ -28,8 +29,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('focus') public focus: ElementRef;
 
   public ngOnInit() {
-    this.chatServive.getMessages().subscribe();
-
+    this.messages = this.chatServive.getMessages();
     this.messageInput = '';
     this.editing = false;
     this.messageControl = new FormControl('');
@@ -69,16 +69,20 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
-  public editMessage(message: IMessage) {
+  public editMessage(index: number) {
     this.editing = true;
-    this.messageInput = message.text;
-    this.indexMessage = this.messages.indexOf(message);
+    this.messages.forEach(
+      (messages) => (this.messageInput = messages[index].text)
+    );
+    this.indexMessage = index;
     const focus: HTMLDivElement = this.focus.nativeElement;
     focus.focus();
   }
   public doneEditMessage(index: number) {
     this.editing = false;
-    this.messages[index].text = this.messageInput;
+    this.messages.forEach(
+      (messages) => (messages[index].text = this.messageInput)
+    );
     this.chatServive.doneEditMessage();
   }
   public cancelEditMessage() {

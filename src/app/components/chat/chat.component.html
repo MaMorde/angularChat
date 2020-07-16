@@ -10,7 +10,7 @@
   <mat-card-content class="chat__content" #container>
     <div
       class="chat__wrapper"
-      *ngFor="let message of messages | async"
+      *ngFor="let message of messages | async; index as i"
       [ngClass]="{
         chat__mymessage: message.user.username === getLoggedName()
       }"
@@ -34,7 +34,7 @@
 
           <div class="chat__edit-message">
             <div *ngIf="message.user.username === getLoggedName()">
-              <button mat-icon-button (click)="editMessage(message)">
+              <button mat-icon-button (click)="editMessage(i)">
                 <span class="material-icons">
                   edit
                 </span>
