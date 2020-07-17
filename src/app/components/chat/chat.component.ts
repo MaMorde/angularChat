@@ -92,7 +92,4 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public deleteMessage(message: IMessage) {
     this.chatServive.deleteMessage(message.id);
   }
-  public clearMessages() {
-    this.chatServive.clearMessages();
-  }
 }

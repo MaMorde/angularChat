@@ -66,8 +66,6 @@
   &__header {
     height: 80px;
     background-color: #f1f1f1;
-    justify-content: space-between;
-    display: flex;
   }
   &__title {
     position: relative;
@@ -117,16 +115,6 @@
     height: 50px;
     color: white;
     margin-top: 10px;
-  }
-  &__clear {
-    align-self: center;
-    margin-right: 36px;
-    &-btn {
-      background: #1e89d0;
-      width: 100px;
-      height: 35px;
-      color: white;
-    }
   }
 }
 
