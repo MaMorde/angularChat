@@ -25,7 +25,7 @@ export class ChatService {
     this.subjectMessages.next(this.messages);
   }
   public clearMessages() {
-    this.messages = [];
+    this.messages = null;
     this.subjectMessages.next(this.messages);
   }
   public doneEditMessage() {
