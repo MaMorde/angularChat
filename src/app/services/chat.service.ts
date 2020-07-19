@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from '../interfaces/message';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,8 @@ export class ChatService {
       localStorage.setItem('messages', JSON.stringify(messages))
     );
   }
-  public getMessages(): BehaviorSubject<IMessage[]> {
-    return this.subjectMessages;
+  public getMessages(): Observable<IMessage[]> {
+    return this.subjectMessages.asObservable();
   }
   public addMessage(message: IMessage) {
     this.messages.push(message);
