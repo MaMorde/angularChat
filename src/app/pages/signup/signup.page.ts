@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/user';
+import { Igender } from 'src/app/interfaces/gender';
+import { overSixteen } from 'src/app/validations/oversixteen.validation';
 
 @Component({
   selector: 'app-signup',
@@ -10,35 +12,63 @@ import { IUser } from '../../interfaces/user';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPageComponent implements OnInit {
+  constructor(private router: Router, private auth: AuthService) {}
   public hide = true;
   public users: IUser[];
   public username: string;
   public password: string;
-  public signupUsernameControl: FormControl;
-  public signupPasswordControl: FormControl;
-
-  constructor(private router: Router, private auth: AuthService) {}
+  public email: string;
+  public city: string;
+  public birthday: Date;
+  public selectedGender: string;
+  public dateNow: Date;
+  public signupForm: FormGroup;
+  public genders: Igender[] = [
+    { value: 'man', viewValue: 'Мужской' },
+    { value: 'women', viewValue: 'Женский' },
+  ];
 
   public ngOnInit(): void {
     this.users = this.auth.initUsers();
-    this.username = '';
-    this.password = '';
-    this.signupUsernameControl = new FormControl('', [
-      Validators.required,
-      Validators.maxLength(10),
-      Validators.minLength(3),
-      Validators.pattern('^[A-Za-z]+[A-Za-z0-9]*$'),
-    ]);
-    this.signupPasswordControl = new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-    ]);
+    this.dateNow = new Date();
+    this.signupForm = new FormGroup({
+      usernameControl: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.minLength(3),
+        Validators.pattern('^[A-Za-z]+[A-Za-z0-9]*$'),
+      ]),
+      passwordControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      emailControl: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      genderControl: new FormControl('', [Validators.required]),
+      birthdayControl: new FormControl('', [
+        Validators.required,
+        overSixteen(),
+      ]),
+      cityControl: new FormControl('', [Validators.required]),
+    });
+  }
+
+  public getDiffYear(): Date {
+    const dateOffset = 24 * 60 * 60 * 1000 * 365 * 16; // 16 years
+    this.dateNow.setTime(this.dateNow.getTime() - dateOffset);
+    return this.dateNow;
   }
   public signupUser(): void {
     const newUser: IUser = {
       id: Math.random(),
       username: this.username,
       password: this.password,
+      email: this.email,
+      city: this.city,
+      gender: this.selectedGender,
+      birthday: this.birthday,
     };
 
     let chekUserName = false;
@@ -68,6 +98,7 @@ export class SignupPageComponent implements OnInit {
       this.username = this.password = '';
       this.router.navigate(['/chat']);
       this.users = this.auth.initUsers();
+      console.log(this.birthday);
     }
   }
 }

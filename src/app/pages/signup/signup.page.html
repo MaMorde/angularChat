@@ -3,66 +3,127 @@
     <mat-card-header class="signup__header">
       <mat-card-title class="signup__title">Регистрация</mat-card-title>
     </mat-card-header>
-    <mat-card-content class="mat-card__content">
-      <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-        <mat-label>Придумайте логин</mat-label>
-        <input
-          [formControl]="signupUsernameControl"
-          matInput
-          #input
-          autocomplete="off"
-          [(ngModel)]="username"
-        />
-        <mat-hint align="end">{{ input.value?.length || 0 }}/10</mat-hint>
-      </mat-form-field>
-      <div
-        *ngIf="signupUsernameControl.touched && signupUsernameControl.invalid"
-        class="signup__validations"
-      >
-        <small *ngIf="signupUsernameControl.errors.required"
-          >Данное поле не может быть пустым</small
-        >
-        <small *ngIf="signupUsernameControl.errors.pattern"
-          >Имя пользователя может состоять только из латинских букв и
-          цифр.</small
-        >
-      </div>
+    <mat-card-content>
+      <form class="signup__form" [formGroup]="signupForm">
+        <mat-form-field class="signup__email" appearance="fill">
+          <mat-label>Электронная почта</mat-label>
+          <input matInput formControlName="emailControl" [(ngModel)]="email" />
+          <mat-error
+            *ngIf="signupForm.controls['emailControl'].hasError('required')"
+            >Введите E-mail</mat-error
+          >
+          <mat-error
+            *ngIf="signupForm.controls['emailControl'].hasError('email')"
+            >Введите корректный E-mail</mat-error
+          >
+        </mat-form-field>
 
-      <mat-form-field class="signup__password" appearance="fill">
-        <mat-label>Придумайте пароль</mat-label>
-        <input
-          matInput
-          [formControl]="signupPasswordControl"
-          [type]="hide ? 'password' : 'text'"
-          [(ngModel)]="password"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
+        <mat-form-field
+          hintLabel="Min 3 characters, max 10 characters"
+          appearance="fill"
         >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
-      <div
-        *ngIf="signupPasswordControl.touched && signupPasswordControl.invalid"
-        class="signup__validations"
-      >
-        <small *ngIf="signupPasswordControl.errors.required"
-          >Данное поле не может быть пустым</small
-        >
-        <small *ngIf="signupPasswordControl.errors.minlength"
-          >Пароль должен состоять из 5 и более символов.</small
-        >
-      </div>
+          <mat-label>Придумайте логин</mat-label>
+          <input
+            formControlName="usernameControl"
+            matInput
+            #input
+            autocomplete="off"
+            [(ngModel)]="username"
+          />
+          <mat-error
+            *ngIf="signupForm.controls['usernameControl'].hasError('required')"
+            >Введите логин</mat-error
+          >
+          <mat-error
+            *ngIf="signupForm.controls['usernameControl'].hasError('pattern')"
+            >Имя пользователя может состоять только из латинских букв
+            ицифр</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="signup__password" appearance="fill">
+          <mat-label>Придумайте пароль</mat-label>
+          <input
+            matInput
+            formControlName="passwordControl"
+            [type]="hide ? 'password' : 'text'"
+            [(ngModel)]="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="signupForm.controls['passwordControl'].hasError('required')"
+            >Введите пароль</mat-error
+          >
+          <mat-error
+            *ngIf="signupForm.controls['passwordControl'].errors?.minlength"
+            >Пароль должен состоять из 5 и более символов.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Пол</mat-label>
+          <mat-select
+            formControlName="genderControl"
+            [(value)]="selectedGender"
+          >
+            <mat-option *ngFor="let gedner of genders" [value]="gedner.value">
+              {{gedner.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="signupForm.controls['genderControl'].hasError('required')"
+            >Выберите пол</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="signup__birthday" appearance="fill">
+          <mat-label>Дата Рождения</mat-label>
+          <input
+            formControlName="birthdayControl"
+            matInput
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="signupForm.controls['birthdayControl'].hasError('required')"
+            >Введите дату рождения</mat-error
+          >
+          <mat-error
+            *ngIf="signupForm.controls['birthdayControl'].hasError('underSixteen')"
+            >Минимальный возраст 16 лет</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="signup__city" appearance="fill">
+          <mat-label>Город</mat-label>
+          <input formControlName="cityControl" matInput [(ngModel)]="city" />
+          <mat-error
+            *ngIf="signupForm.controls['cityControl'].hasError('required')"
+            >Введите свой город</mat-error
+          >
+        </mat-form-field>
+      </form>
     </mat-card-content>
+
     <mat-card-actions class="signup__buttons">
       <div class="signup__buttons-registration">
         <button
           [disabled]="
-          signupUsernameControl.invalid || signupPasswordControl.invalid
+          signupForm.controls['usernameControl'].invalid || 
+          signupForm.controls['passwordControl'].invalid ||
+          signupForm.controls['emailControl'].invalid || 
+          signupForm.controls['genderControl'].invalid   || 
+          signupForm.controls['cityControl'].invalid || 
+          signupForm.controls['birthdayControl'].invalid 
         "
           class="signup__button"
           (click)="signupUser()"
