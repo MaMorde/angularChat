@@ -44,4 +44,14 @@
   &__form {
     display: grid;
   }
+  &__gender {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    &-label {
+      padding-right: 10px;
+    }
+    mat-radio-button {
+      padding-left: 10px;
+    }
+  }
 }

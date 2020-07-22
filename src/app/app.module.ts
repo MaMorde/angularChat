@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -50,6 +51,7 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatRadioModule,
     MatNativeDateModule,
   ],
   providers: [AuthGuard],
