@@ -3,7 +3,7 @@
     <mat-card-header class="signup__header">
       <mat-card-title class="signup__title">Регистрация</mat-card-title>
     </mat-card-header>
-    <form [formGroup]="signupForm" novalidate (ngSubmit)="submit()">
+    <form [formGroup]="signupForm" (ngSubmit)="submit()">
       <mat-card-content class="signup__form">
         <mat-form-field class="signup__email" appearance="fill">
           <mat-label>Электронная почта</mat-label>
@@ -16,17 +16,10 @@
           >
         </mat-form-field>
 
-        <mat-form-field
-          hintLabel="Min 3 characters, max 10 characters"
-          appearance="fill"
-        >
+        <mat-form-field appearance="fill">
           <mat-label>Придумайте логин</mat-label>
-          <input
-            formControlName="username"
-            matInput
-            #input
-            autocomplete="off"
-          />
+          <input formControlName="username" matInput #input />
+          <mat-hint>Min 3 characters, max 10 characters</mat-hint>
           <mat-error *ngIf="signupForm.get('username').hasError('required')"
             >Введите логин</mat-error
           >
@@ -72,12 +65,7 @@
 
         <mat-form-field class="signup__birthday" appearance="fill">
           <mat-label>Дата Рождения</mat-label>
-          <input
-            formControlName="birthday"
-            matInput
-            autocomplete="off"
-            [matDatepicker]="picker"
-          />
+          <input formControlName="birthday" matInput [matDatepicker]="picker" />
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
@@ -91,8 +79,15 @@
           >
         </mat-form-field>
         <mat-form-field class="signup__city" appearance="fill">
+          <mat-label>Страна</mat-label>
+          <input formControlName="country" matInput />
+          <mat-error *ngIf="signupForm.get('country').hasError('required')"
+            >Введите свою страну</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="signup__city" appearance="fill">
           <mat-label>Город</mat-label>
-          <input formControlName="city" matInput autocomplete="off" />
+          <input formControlName="city" matInput />
           <mat-error *ngIf="signupForm.get('city').hasError('required')"
             >Введите свой город</mat-error
           >

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/user';
-import { Igender } from 'src/app/interfaces/gender';
 import { overSixteen } from 'src/app/validations/oversixteen.validation';
 
 @Component({
@@ -19,18 +18,9 @@ export class SignupPageComponent implements OnInit {
   ) {}
   public hide = true;
   public users: IUser[];
-  public username: string;
-  public password: string;
-  public email: string;
-  public city: string;
-  public birthday: Date;
   public selectedGender: string;
   public dateNow: Date;
   public signupForm: FormGroup;
-  public genders: Igender[] = [
-    { value: 'man', viewValue: 'Мужской' },
-    { value: 'women', viewValue: 'Женский' },
-  ];
 
   public ngOnInit(): void {
     this.users = this.auth.initUsers();
@@ -48,17 +38,20 @@ export class SignupPageComponent implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(5)]],
       email: ['', [Validators.required, Validators.email]],
-      gender: ['', [Validators.required]],
       birthday: ['', [Validators.required, overSixteen()]],
-      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      city: [{ value: '', disabled: true }, Validators.required],
+      gender: ['', [Validators.required]],
+    });
+    this.signupForm.get('country').valueChanges.subscribe((selectedCountry) => {
+      if (!selectedCountry) {
+        this.signupForm.get('city').disable();
+      } else {
+        this.signupForm.get('city').enable();
+      }
     });
   }
 
-  public getDiffYear(): Date {
-    const dateOffset = 24 * 60 * 60 * 1000 * 365 * 16; // 16 years
-    this.dateNow.setTime(this.dateNow.getTime() - dateOffset);
-    return this.dateNow;
-  }
   public signupUser(user: IUser): void {
     const newUser: IUser = {
       id: Math.random(),
@@ -66,8 +59,9 @@ export class SignupPageComponent implements OnInit {
       email: user.email,
       password: user.password,
       birthday: user.birthday,
-      gender: user.gender,
+      country: user.country,
       city: user.city,
+      gender: user.gender,
     };
 
     let chekUserName = false;
@@ -94,7 +88,7 @@ export class SignupPageComponent implements OnInit {
     } else {
       this.auth.signupLocalUser(newUser);
       this.auth.setAuthUser(newUser);
-      this.username = this.password = '';
+
       this.router.navigate(['/chat']);
       this.users = this.auth.initUsers();
     }
@@ -102,6 +96,8 @@ export class SignupPageComponent implements OnInit {
   public submit() {
     if (this.signupForm.invalid) {
       return;
-    } else { this.signupUser(this.signupForm.value); }
+    } else {
+      this.signupUser(this.signupForm.value);
+    }
   }
 }
