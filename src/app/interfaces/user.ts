@@ -1,5 +1,3 @@
-import { Igender } from './gender';
-
 export interface IUser {
   id: number;
   username: string;

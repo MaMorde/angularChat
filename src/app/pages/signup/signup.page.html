@@ -75,7 +75,7 @@
             >Введите дату рождения</mat-error
           >
           <mat-error *ngIf="signupForm.get('birthday').hasError('underSixteen')"
-            >Минимальный возраст 16 лет</mat-error
+            >Минимальный - 16 лет, максимальный - 100 лет</mat-error
           >
         </mat-form-field>
         <mat-form-field class="signup__city" appearance="fill">

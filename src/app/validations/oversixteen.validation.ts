@@ -14,6 +14,13 @@ export function overSixteen(): ValidatorFn {
           currentAge: delta,
         },
       };
+    } else if (delta > 100) {
+      return {
+        overonehun: {
+          requiredAge: '100-',
+          currentAge: delta,
+        },
+      };
     }
 
     return null;
