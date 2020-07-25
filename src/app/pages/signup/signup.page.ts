@@ -41,7 +41,7 @@ export class SignupPageComponent implements OnInit {
       birthday: ['', [Validators.required, overSixteen()]],
       country: ['', [Validators.required]],
       city: ['', Validators.required],
-      gender: ['', [Validators.required]],
+      gender: ['man', [Validators.required]],
     });
     this.signupForm
       .get('country')
