@@ -23,6 +23,7 @@
     "@angular/router": "~9.1.6",
     "@ctrl/ngx-emoji-mart": "^3.1.0",
     "angular-emoji": "^0.1.45",
+    "moment": "^2.27.0",
     "rxjs": "~6.5.4",
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-scss": "^3.17.2",

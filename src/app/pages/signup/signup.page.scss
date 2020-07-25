@@ -1,14 +1,10 @@
-.mat-card__content {
-  display: grid;
-}
-
 .signup {
   display: flex;
   justify-content: center;
   margin-top: 50px;
   &__container {
     width: 500px;
-    height: 405px;
+    height: auto;
     background-color: whitesmoke;
     position: relative;
     text-align: center;
@@ -21,10 +17,9 @@
   }
   &__buttons {
     display: block;
+    margin-bottom: 0;
+    padding-bottom: 0;
 
-    &-registration {
-      margin-top: 10px;
-    }
     &-back {
       margin-top: 10px;
     }
@@ -40,10 +35,23 @@
     display: flex;
     justify-content: center;
     color: black;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
   &__title {
     font-size: 25px;
     margin-top: 10px;
+  }
+  &__form {
+    display: grid;
+  }
+  &__gender {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    &-label {
+      padding-right: 10px;
+    }
+    mat-radio-button {
+      padding-left: 10px;
+    }
   }
 }
