@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/user';
 import { overSixteen } from 'src/app/validations/oversixteen.validation';
-
+import { startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -40,16 +40,19 @@ export class SignupPageComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       birthday: ['', [Validators.required, overSixteen()]],
       country: ['', [Validators.required]],
-      city: [{ value: '', disabled: true }, Validators.required],
+      city: ['', Validators.required],
       gender: ['', [Validators.required]],
     });
-    this.signupForm.get('country').valueChanges.subscribe((selectedCountry) => {
-      if (!selectedCountry) {
-        this.signupForm.get('city').disable();
-      } else {
-        this.signupForm.get('city').enable();
-      }
-    });
+    this.signupForm
+      .get('country')
+      .valueChanges.pipe(startWith(this.signupForm.get('country').value))
+      .subscribe((selectedCountry) => {
+        if (!selectedCountry) {
+          this.signupForm.get('city').disable();
+        } else {
+          this.signupForm.get('city').enable();
+        }
+      });
   }
 
   public signupUser(user: IUser): void {
