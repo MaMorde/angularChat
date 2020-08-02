@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (this.editing === false) {
       this.addMessage();
     } else {
-      this.doneEditMessage(this.indexMessage);
+      this.doneEditMessage(this.indexMessage, this.messageInput);
     }
 
     this.messageInput = '';
@@ -69,21 +69,16 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
-  public editMessage(index: number) {
+  public editMessage(index: number, textMessage: string) {
     this.editing = true;
-    this.messages.forEach(
-      (messages) => (this.messageInput = messages[index].text)
-    );
     this.indexMessage = index;
+    this.messageInput = textMessage;
     const focus: HTMLDivElement = this.focus.nativeElement;
     focus.focus();
   }
-  public doneEditMessage(index: number) {
+  public doneEditMessage(index: number, textMessage: string) {
     this.editing = false;
-    this.messages.forEach(
-      (messages) => (messages[index].text = this.messageInput)
-    );
-    this.chatServive.doneEditMessage();
+    this.chatServive.doneEditMessage(index, textMessage);
   }
   public cancelEditMessage() {
     this.editing = false;

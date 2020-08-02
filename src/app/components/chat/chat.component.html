@@ -34,7 +34,7 @@
 
           <div class="chat__edit-message">
             <div *ngIf="message.user.username === getLoggedName()">
-              <button mat-icon-button (click)="editMessage(i)">
+              <button mat-icon-button (click)="editMessage(i, message.text)">
                 <span class="material-icons">
                   edit
                 </span>

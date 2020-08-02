@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChatService {
-  public messages: IMessage[] = [];
+  public messages: IMessage[];
   private subjectMessages: BehaviorSubject<IMessage[]> = null;
 
   constructor() {
@@ -25,7 +25,8 @@ export class ChatService {
     this.subjectMessages.next(this.messages);
   }
 
-  public doneEditMessage() {
+  public doneEditMessage(index: number, textMessage: string) {
+    this.messages.splice(index, 1, textMessage);
     this.subjectMessages.next(this.messages);
   }
   public deleteMessage(id: number) {
