@@ -82,10 +82,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     const focus: HTMLDivElement = this.focus.nativeElement;
     focus.focus();
   }
-  // public doneEditMessage(index: number, textMessage: string) {
-  //   this.editing = false;
-  //   this.chatServive.doneEditMessage(index, textMessage);
-  // }
+
   public cancelEditMessage() {
     this.editing = false;
     this.messageInput = '';
