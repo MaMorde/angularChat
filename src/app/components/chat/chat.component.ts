@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public messageInput: string;
   public editing: boolean;
   public date: Date;
+  public currentMessage: IMessage;
   public indexMessage: number;
   public messageControl: FormControl;
   @ViewChild('container') public container: ElementRef;
@@ -60,7 +61,10 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (this.editing === false) {
       this.addMessage();
     } else {
-      this.doneEditMessage(this.indexMessage, this.messageInput);
+      const { text, ...data } = this.currentMessage;
+      const editMessage = { text: this.messageInput, ...data };
+      this.editing = false;
+      this.chatServive.doneEditMessage(this.indexMessage, editMessage);
     }
 
     this.messageInput = '';
@@ -69,17 +73,19 @@ export class ChatComponent implements OnInit, AfterViewInit {
   public getLoggedName(): string {
     return this.auth.getAuthUser().username;
   }
-  public editMessage(index: number, textMessage: string) {
+  public editMessage(index: number, editMessage: IMessage) {
     this.editing = true;
     this.indexMessage = index;
-    this.messageInput = textMessage;
+    this.messageInput = editMessage.text;
+    this.currentMessage = editMessage;
+
     const focus: HTMLDivElement = this.focus.nativeElement;
     focus.focus();
   }
-  public doneEditMessage(index: number, textMessage: string) {
-    this.editing = false;
-    this.chatServive.doneEditMessage(index, textMessage);
-  }
+  // public doneEditMessage(index: number, textMessage: string) {
+  //   this.editing = false;
+  //   this.chatServive.doneEditMessage(index, textMessage);
+  // }
   public cancelEditMessage() {
     this.editing = false;
     this.messageInput = '';

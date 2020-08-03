@@ -25,8 +25,8 @@ export class ChatService {
     this.subjectMessages.next(this.messages);
   }
 
-  public doneEditMessage(index: number, textMessage: string) {
-    this.messages.splice(index, 1, textMessage);
+  public doneEditMessage(index: number, message: IMessage) {
+    this.messages.splice(index, 1, message);
     this.subjectMessages.next(this.messages);
   }
   public deleteMessage(id: number) {
