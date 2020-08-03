@@ -73,14 +73,16 @@
         <mat-hint align="end">{{ messageInput.length }} / 256</mat-hint>
       </mat-form-field>
       <div *ngIf="!editing; else editingBtn">
-        <button
-          [disabled]="!(messageInput && messageInput.trim())"
-          mat-button
-          class="chat__send-btn"
-          (click)="onSumbit()"
-        >
-          Отправить
-        </button>
+        <div class="chat__send">
+          <button
+            [disabled]="!(messageInput && messageInput.trim())"
+            mat-button
+            class="chat__send-btn"
+            (click)="onSumbit()"
+          >
+            Отправить
+          </button>
+        </div>
       </div>
       <ng-template #editingBtn>
         <button
