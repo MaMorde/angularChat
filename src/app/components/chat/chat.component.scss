@@ -100,7 +100,7 @@
     }
   }
   &__mat-form-field {
-    width: 80%;
+    width: 100%;
     margin-right: 25px;
   }
   &__cancel-btn {
@@ -134,6 +134,13 @@
     &__content {
       margin-left: 30px;
       padding-right: 30px;
+    }
+    &__send-btn {
+      background: #1e89d0;
+      width: 45px;
+      height: 45px;
+      color: white !important;
+      margin-top: 10px;
     }
   }
 }
