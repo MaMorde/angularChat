@@ -39,23 +39,17 @@
     height: 60px;
   }
 }
-@media only screen and (max-width: 1329px) {
-  .navbar {
+.navbar {
+  @media (max-width: 1329px) {
     padding: 0 250px;
   }
-}
-@media only screen and (max-width: 1119px) {
-  .navbar {
+  @media (max-width: 1119px) {
     padding: 0 70px;
   }
-}
-@media only screen and (max-width: 699px) {
-  .navbar {
+  @media (max-width: 699px) {
     padding: 0 20px;
   }
-}
-@media only screen and (max-width: 431px) {
-  .navbar {
+  @media (max-width: 431px) {
     &__title {
       font-size: 15px;
     }

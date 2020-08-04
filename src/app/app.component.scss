@@ -1,18 +1,13 @@
 .container {
   padding: 0 370px;
-}
-@media only screen and (max-width: 1329px) {
-  .container {
+
+  @media (max-width: 1329px) {
     padding: 0 250px;
   }
-}
-@media only screen and (max-width: 1119px) {
-  .container {
+  @media (max-width: 1119px) {
     padding: 0 70px;
   }
-}
-@media only screen and (max-width: 699px) {
-  .container {
+  @media (max-width: 699px) {
     padding: 0 20px;
   }
 }

@@ -1,7 +1,7 @@
 <mat-card class="chat">
   <mat-card-header class="chat__header">
     <mat-card-title class="chat__title"
-      >{{ getLoggedName() }}
+      ><div class="chat__title-username">{{ getLoggedName() }}</div>
       <div class="chat__online-indicator"></div>
       <span class="chat__online-text">Online</span>
     </mat-card-title>
@@ -34,13 +34,21 @@
 
           <div class="chat__edit-message">
             <div *ngIf="message.user.username === getLoggedName()">
-              <button mat-icon-button (click)="editMessage(i, message)">
+              <button
+                class="chat__mat-btns"
+                mat-icon-button
+                (click)="editMessage(i, message)"
+              >
                 <span class="material-icons">
                   edit
                 </span>
               </button>
 
-              <button mat-icon-button (click)="deleteMessage(message)">
+              <button
+                class="chat__mat-btns"
+                mat-icon-button
+                (click)="deleteMessage(message)"
+              >
                 <span class="material-icons">
                   delete
                 </span>
@@ -76,11 +84,13 @@
         <div class="chat__send">
           <button
             [disabled]="!(messageInput && messageInput.trim())"
-            mat-button
+            mat-icon-button
             class="chat__send-btn"
             (click)="onSumbit()"
           >
-            Отправить
+            <span class="material-icons">
+              send
+            </span>
           </button>
         </div>
       </div>
