@@ -1,7 +1,7 @@
 <mat-card class="chat">
   <mat-card-header class="chat__header">
-    <mat-card-title class="chat__title"
-      ><div class="chat__title-username">{{ getLoggedName() }}</div>
+    <mat-card-title class="chat__title">
+      <div class="chat__title-username">{{ getLoggedName() }}</div>
       <div class="chat__online-indicator"></div>
       <span class="chat__online-text">Online</span>
     </mat-card-title>
@@ -97,18 +97,22 @@
       <ng-template #editingBtn>
         <button
           [disabled]="!(messageInput && messageInput.trim())"
-          mat-button
+          mat-icon-button
           class="chat__edit-btn"
           (click)="onSumbit()"
         >
-          Изменить
+          <span class="material-icons">
+            done
+          </span>
         </button>
         <button
           (click)="cancelEditMessage()"
-          mat-button
+          mat-icon-button
           class="chat__cancel-btn"
         >
-          Отменить
+          <span class="material-icons">
+            close
+          </span>
         </button>
       </ng-template>
     </form>

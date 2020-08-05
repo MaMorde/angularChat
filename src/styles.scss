@@ -15,6 +15,9 @@ body {
 .mat-form-field-ripple {
   background-color: #1e89d0;
 }
+.mat-card-header-text {
+  width: 100%;
+}
 
 @import "~@angular/material/theming";
 // Plus imports for other components in your app.
