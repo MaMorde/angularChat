@@ -1,9 +1,7 @@
-.mat-card-header-text {
-  margin: 0 !important;
-}
 .chat {
   padding: 0;
   margin-top: 50px;
+  min-width: 300px;
 
   &__online-indicator {
     width: 7px;
@@ -24,7 +22,6 @@
   &__username {
     font-weight: 500;
     font-size: 13px;
-
     font-weight: bold;
   }
   &__message {
@@ -32,7 +29,6 @@
     word-break: break-all;
     width: fit-content;
     border-radius: 11px;
-    //box-shadow: inset 0 0 1em #C0C0C0;
     box-shadow: 1px 1px 10px #c0c0c0;
     position: relative;
     background: rgb(18%, 60%, 88%, 0.9);
@@ -68,82 +64,104 @@
     background-color: #f1f1f1;
   }
   &__title {
-    position: relative;
-    margin-top: 30px;
-    margin-left: 20px;
+    padding-top: 30px;
+    padding-left: 20px;
+
     display: flex;
+    &-username {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: calc(100% - 110px);
+    }
   }
   &__content {
     height: 400px;
     overflow: scroll;
     overflow-x: hidden;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    margin-left: 99px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    padding-left: 99px;
     padding-right: 99px;
   }
   &__actions {
     background: #f7f7f7;
     margin: 0;
-    height: 120px;
+
     &-form {
-      padding: 13px 36px 0 36px;
+      padding: 13px 36px 30px 36px;
       display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      align-items: center;
     }
   }
   &__mat-form-field {
-    width: 80%;
+    width: 100%;
     margin-right: 25px;
   }
   &__cancel-btn {
     background: #1e89d0;
-    width: 120px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     color: white;
     margin: 0;
   }
   &__edit-btn {
     background: #1e89d0;
-    width: 120px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     color: white;
-    margin-left: 45px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   &__send-btn {
     background: #1e89d0;
-    width: 120px;
-    height: 50px;
-    color: white;
+    width: 55px;
+    height: 55px;
+    color: white !important;
     margin-top: 10px;
   }
+  &__mat-btns {
+    width: 0;
+    padding: 0 !important;
+  }
 }
-
-::-webkit-scrollbar-button {
-  background-repeat: no-repeat;
-  width: 6px;
-  height: 0px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #f7f7f7;
-  box-shadow: 0px 0px 3px #f7f7f7 inset;
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background-color: #1e89d0;
-  box-shadow: 0px 1px 1px #fff inset;
-}
-
-::-webkit-resizer {
-  background-repeat: no-repeat;
-  width: 7px;
-  height: 0px;
-}
-
-::-webkit-scrollbar {
-  width: 11px;
+@media (max-width: 769px) {
+  .chat {
+    margin-top: 0px;
+    height: calc(100vh - 85px);
+    &__content {
+      padding-left: 30px;
+      padding-right: 30px;
+      height: calc(100% - 100px - 108px);
+      padding-bottom: 0;
+    }
+    &__send-btn {
+      width: 45px;
+      height: 45px;
+    }
+    &__cancel-btn {
+      width: 40px;
+      height: 40px;
+    }
+    &__edit-btn {
+      width: 40px;
+      height: 40px;
+      margin-left: 14px;
+      margin-right: 10px;
+      align-items: center;
+    }
+    &__actions {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+    &__actions-form {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .mat-button,

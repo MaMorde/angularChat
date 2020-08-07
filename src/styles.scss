@@ -2,12 +2,9 @@
 
 html,
 body {
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgb(46, 154, 225) 30%,
-    rgb(233, 233, 233) 70%
-  );
+  height: 100vh;
+  width: 100vw;
+  background: rgb(92, 176, 233);
 
   font-family: "Open Sans", sans-serif;
 }
@@ -17,6 +14,9 @@ body {
 }
 .mat-form-field-ripple {
   background-color: #1e89d0;
+}
+.mat-card-header-text {
+  width: 100%;
 }
 
 @import "~@angular/material/theming";
